@@ -953,6 +953,13 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
 
 <script>
 const AP='admin@1234';
+// URL del Apps Script embebida por defecto — así los técnicos de provincia
+// ya quedan conectados sin configurar nada. El admin puede sobrescribirla.
+const SHEET_URL_DEFAULT='https://script.google.com/macros/s/AKfycbxvxjtcxgCS4dyyeXnGdPLHTWVxpUf2aK136Gnb27CMvGQ-pcyTGmempJDvQA65C3g/exec';
+function getSheetUrl(){
+  const saved=localStorage.getItem('bth_sheet_url');
+  return (saved&&saved.trim())?saved.trim():SHEET_URL_DEFAULT;
+}
 const SEED_U=[{"nombreCompleto": "Manuel Espinoza Apaclla", "username": "MANUEL", "password": "M1234"}, {"nombreCompleto": "Lizandro Siancas Vilchez", "username": "LIZANDRO", "password": "L1234"}];
 const SEED_R=[{"id": "BH0001SEED", "fecha": "2026-05-29T16:58:56", "tipo": "Trabajos en laboratorio", "estacion": "NINGUNA", "banda": "-", "descripcion": "Reparación y programación de decodificadores zona norte", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0002SEED", "fecha": "2026-05-31T16:43:48", "tipo": "Asistencia remota", "estacion": "MAZAN", "banda": "FM", "descripcion": "Trabajo remoto , configuración del receptor satelital, se bajo la señal de Bethel.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0003SEED", "fecha": "2026-05-31T18:38:30", "tipo": "Asistencia remota", "estacion": "SANTA CRUZ", "banda": "FM", "descripcion": "Trabajo remoto.instacion del del Transmisor y conexión del Receptor satelital.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0004SEED", "fecha": "2026-05-31T18:40:27", "tipo": "Asistencia remota", "estacion": "USQUIL", "banda": "FM", "descripcion": "Instalación del Receptor satelital y configuración.\nTrabajo pendiente", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0005SEED", "fecha": "2026-06-01T17:48:26", "tipo": "Viaje tecnico", "estacion": "POROTO", "banda": "FM", "descripcion": "Trabajo de Campo : estación de Simbal desmontaje  de la torre y del sistema irradiante. Y visita técnica a la nueva ubicación de la estación.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0006SEED", "fecha": "2026-06-01T19:50:03", "tipo": "Asistencia remota", "estacion": "BAGUA", "banda": "VHF", "descripcion": "Coordinaciónes , verificación del TX de tv . trabajo pendiente...", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0007SEED", "fecha": "2026-06-01T19:51:50", "tipo": "Asistencia remota", "estacion": "CHINCHIHUASI", "banda": "FM", "descripcion": "Trabajo remoto  verificación y conexión del sistema eléctrico", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0008SEED", "fecha": "2026-06-02T08:56:43", "tipo": "Viaje tecnico", "estacion": "POROTO", "banda": "FM", "descripcion": "Desmontaje de torre de 27m, recuperación de sistema irradiante ( heliax, antena), revisión de los implementos comprados em Lima para la siguiente instalación.", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0009SEED", "fecha": "2026-06-02T22:51:30", "tipo": "Envíos y recojos", "estacion": "CUISPES", "banda": "FM", "descripcion": "Recojo del transmisor, del taller del ING  Gary  hacia la agencia GHBus", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0010SEED", "fecha": "2026-06-02T22:56:49", "tipo": "Mantenimiento preventivo", "estacion": "TRUJILLO", "banda": "FM", "descripcion": "Cableado  de la red  de internet par los  transmisores", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0011SEED", "fecha": "2026-06-03T19:28:17", "tipo": "Asistencia remota", "estacion": "NAUTA", "banda": "FM", "descripcion": "Trabajo remoto configuración del receptor satelital", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0012SEED", "fecha": "2026-06-03T19:30:40", "tipo": "Mantenimiento preventivo", "estacion": "TRUJILLO", "banda": "FM", "descripcion": "Trabajo de cableado de internet para los equipos de tv y FM . trabajo pendiente", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0013SEED", "fecha": "2026-06-04T20:01:44", "tipo": "Mantenimiento preventivo", "estacion": "TRUJILLO", "banda": "TDT", "descripcion": "Trabajo de cableado de internet al transmisor", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0014SEED", "fecha": "2026-06-05T09:51:24", "tipo": "Mantenimiento preventivo", "estacion": "TRUJILLO", "banda": "VHF", "descripcion": "Conexiónes de red para administración remota de los equipos de transmisión: TX FM ECRESSO, TX HD RODHE( REMUX,IRD PBI, CONTROL UNIT,)\nCableado hacia la oficina Horizontes del valle para gestión y monitoreo de equipos.", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0015SEED", "fecha": "2026-06-06T07:34:01", "tipo": "Trabajos en laboratorio", "estacion": "ROQUE", "banda": "FM", "descripcion": "Trabajo realizado : mantenimiento del Transmisor .y mediciónes con el Analizador y vatimetro.y verificación del audio.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0016SEED", "fecha": "2026-06-06T08:09:55", "tipo": "Asistencia remota", "estacion": "PEDRO GALVEZ", "banda": "FM", "descripcion": "Orientación de la Parabolica y configuración del receptor satelital. Trabajo pendiente", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0017SEED", "fecha": "2026-06-06T17:37:26", "tipo": "Asistencia remota", "estacion": "PEDRO GALVEZ", "banda": "FM", "descripcion": "En cordinación con el  Ps se realizó la  configuracion del decodificador Satelital . logrando bajar la señal de Bethel .", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0018SEED", "fecha": "2026-06-08T19:13:08", "tipo": "Trabajos en laboratorio", "estacion": "ROQUE", "banda": "FM", "descripcion": "Visita al taller de Ing Gary  para realizar el envío del TX    .envío pendiente.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0019SEED", "fecha": "2026-06-08T19:15:58", "tipo": "Asistencia remota", "estacion": "HUANCAVELICA", "banda": "FM", "descripcion": "Trabajo remoto configuración del decodificador Satelital", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0020SEED", "fecha": "2026-06-09T21:01:00", "tipo": "Viaje tecnico", "estacion": "CHACHAPOYAS", "banda": "FM", "descripcion": "Mantenimiento", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0021SEED", "fecha": "2026-06-10T22:39:34", "tipo": "Viaje tecnico", "estacion": "CUISPES", "banda": "FM", "descripcion": "Mantenimiento de la  antena y calibración y medición con el calibrador de antenas.\nMedición de la potencia del transmisor y ajustes al equipo con el Analizador y de Voltaje.y tomas de coordenadas.\nVerificación de la señal del receptor satelital.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0022SEED", "fecha": "2026-06-11T11:38:17", "tipo": "Asistencia remota", "estacion": "SOPLIN VARGAS", "banda": "FM", "descripcion": "Coordinación y recomendaciones de como corregir la orientación de la antena aroespira que irradia la señal FM.\n \nSe cayó el mastil y la antena se golpeó, estoy a la espera que mejore el clima y apoyarles remotamente con la orientación de la antena y reparación según los recursos locales.", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0023SEED", "fecha": "2026-06-11T11:44:07", "tipo": "Envíos y recojos", "estacion": "PICOTA", "banda": "FM", "descripcion": "Envío del tx.\n\nOrigen: taller ing Gary Trujillo 10/06/25\nDestino: taller ing lingan chimbote", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0024SEED", "fecha": "2026-06-11T11:58:49", "tipo": "Envíos y recojos", "estacion": "TABALOSOS", "banda": "FM", "descripcion": "Traslado tx \n\nOrigen :taller ing Gary Trujillo 10/06/25\nDestino: taller ing lingan chimbote", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0025SEED", "fecha": "2026-06-11T12:00:22", "tipo": "Mantenimiento preventivo", "estacion": "PIURA", "banda": "UHF", "descripcion": "Revisión y puesta en marcha del amplificador UHF digital.", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0026SEED", "fecha": "2026-06-11T12:01:17", "tipo": "Mantenimiento preventivo", "estacion": "PIURA", "banda": "FM", "descripcion": "Revisión y puesta en marcha del tx , driver y amplificador FM", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0027SEED", "fecha": "2026-06-12T06:11:27", "tipo": "Viaje tecnico", "estacion": "LEYMEBAMBA", "banda": "FM", "descripcion": "Trabajo  realizado : Mantenimiento del sistema irradiante ( calibración y medición de las Antenas y Distribuidor).\nVerificación de la señal Satelital.\nInstalación del transmisor y medición con el Analizador y Vatimetro.\nTrabajo pendiente", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0028SEED", "fecha": "2026-06-13T07:57:49", "tipo": "Viaje tecnico", "estacion": "RODRIGUEZ DE MENDOZA", "banda": "FM", "descripcion": "Trabajo realizado en la estación: . mantenimiento de los anclajes  cambio de los templadores y ajustes de la Torre. \nTrabajo en el sistema irradiante : mantenimiento y calibración de las antenas, medición del Distribuidor.\nSistema Satelital:  Configuración del receptor satelital y verificación de la señal.\nSistema de transmisión: reparación del transmisor y mediciónes con el Analizador y Vatimetro.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}];
 const TIPOS_DEF=[
@@ -1012,7 +1019,7 @@ function init(){
 // Descarga técnicos y tipos desde Google Sheets (fuente de verdad)
 // Si no hay internet o URL, usa los que ya están guardados localmente.
 function loadConfigFromSheet(){
-  const url=localStorage.getItem('bth_sheet_url');
+  const url=getSheetUrl();
   if(!url)return;
   fetch(url+'?modo=config',{method:'GET'})
     .then(r=>r.json())
@@ -1132,11 +1139,15 @@ function activateAdmin(){
 
 // ── Google Sheets sync UI ──
 function renderSyncUI(){
-  const url=localStorage.getItem('bth_sheet_url')||'';
-  document.getElementById('sheetUrl').value=url;
+  const saved=localStorage.getItem('bth_sheet_url')||'';
+  const efectiva=getSheetUrl();
+  // mostramos en el input lo que esté guardado manualmente (vacío = usa la default)
+  document.getElementById('sheetUrl').value=saved;
+  document.getElementById('sheetUrl').placeholder=SHEET_URL_DEFAULT;
   const st=document.getElementById('syncStatus');
-  if(url){
-    st.innerHTML='<span style="color:var(--ok)">● Conectado</span> — los registros nuevos se envían automáticamente.';
+  if(efectiva){
+    const cual=saved?'(URL personalizada)':'(URL por defecto)';
+    st.innerHTML='<span style="color:var(--ok)">● Conectado</span> '+cual+' — los registros se envían automáticamente a Google Sheets.';
   }else{
     st.innerHTML='<span style="color:var(--t3)">○ Sin conectar</span> — los registros solo se guardan en este dispositivo.';
   }
@@ -1152,15 +1163,15 @@ function saveSheetUrl(){
   if(url)localStorage.setItem('bth_sheet_url',url);
   else localStorage.removeItem('bth_sheet_url');
   renderSyncUI();
-  toast(url?'URL guardada ✓':'URL eliminada','ok');
-  if(url)flushQueue();
+  toast(url?'URL personalizada guardada ✓':'Usando URL por defecto','ok');
+  flushQueue();
 }
 
 function testSheet(){
-  const url=document.getElementById('sheetUrl').value.trim();
-  if(!url){toast('Primero pega la URL','er');return;}
+  const url=getSheetUrl();
+  if(!url){toast('No hay URL configurada','er');return;}
   toast('Enviando registro de prueba...','');
-  const test={id:'TEST'+Date.now(),fecha:new Date().toISOString(),tipo:'PRUEBA',estacion:'TEST',banda:'-',descripcion:'Registro de prueba desde la app — puedes borrar esta fila.',username:'ADMIN',nombreCompleto:'Prueba de conexión'};
+  const test={accion:'registro',id:'TEST'+Date.now(),fecha:new Date().toISOString(),tipo:'PRUEBA',estacion:'TEST',banda:'-',descripcion:'Registro de prueba desde la app — puedes borrar esta fila.',username:'ADMIN',nombreCompleto:'Prueba de conexión'};
   fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(test)})
     .then(()=>toast('Enviado ✓ Revisa tu hoja de cálculo','ok'))
     .catch(()=>toast('No se pudo enviar — revisa la URL','er'));
@@ -1201,7 +1212,7 @@ function buildAF(){
 let adminRecs=null; // registros descargados de la hoja (solo admin)
 
 function renderAR(){
-  const url=localStorage.getItem('bth_sheet_url');
+  const url=getSheetUrl();
   // Si hay hoja conectada y aún no descargamos, traer TODO de la nube
   if(url&&adminRecs===null){
     document.getElementById('arlist').innerHTML='<div class="mt">⏳ Descargando registros de la nube...</div>';
@@ -1358,7 +1369,7 @@ function guardar(){
 
 // Envío a Google Sheets (no bloquea ni falla el guardado local)
 function syncToSheet(reg){
-  const url=localStorage.getItem('bth_sheet_url');
+  const url=getSheetUrl();
   if(!url)return; // sin URL configurada, solo guarda local
   const payload=Object.assign({accion:'registro'},reg);
   try{
@@ -1379,7 +1390,7 @@ function syncToSheet(reg){
 
 // Enviar una acción de configuración (técnicos/tipos) a la hoja
 function postAction(payload){
-  const url=localStorage.getItem('bth_sheet_url');
+  const url=getSheetUrl();
   if(!url)return;
   fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}).catch(()=>{});
 }
@@ -1395,7 +1406,7 @@ function markSynced(id){
 }
 // Reintentar la cola pendiente (se llama al abrir la app)
 function flushQueue(){
-  const url=localStorage.getItem('bth_sheet_url');
+  const url=getSheetUrl();
   if(!url)return;
   const q=JSON.parse(localStorage.getItem('bth_sync_queue')||'[]');
   if(!q.length)return;
