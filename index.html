@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Registro Operaciones · Bethel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Registro Bethel">
+<style>
+:root{--bg:#0D1117;--sf:#161B22;--cd:#1C2333;--c2:#21262D;--bd:#30363D;--ac:#00D4AA;--ad:rgba(0,212,170,.12);--a2:#3b82f6;--tx:#E6EDF3;--t2:#8B949E;--t3:#484F58;--dn:#F85149;--wn:#D29922;--ok:#3FB950;--r:10px;--rs:6px;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;overflow:hidden;}
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--sf);border-bottom:1px solid var(--bd);padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;}
+.hb{display:flex;align-items:center;gap:10px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ac);box-shadow:0 0 6px var(--ac);animation:pu 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes pu{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.bt{font-size:13px;font-weight:700;}.bs2{font-size:9px;color:var(--t2);font-family:'JetBrains Mono',monospace;letter-spacing:1px;}
+.ubadge{background:var(--ad);border:1px solid var(--ac);color:var(--ac);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;cursor:pointer;white-space:nowrap;}
+.hbtn{width:36px;height:36px;border-radius:var(--rs);background:var(--cd);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s;flex-shrink:0;}.hbtn:active{opacity:.7;}.hbtn.active{border-color:var(--ac);background:var(--ad);}
+main{position:fixed;top:52px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 24px;}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--sf);border-top:1px solid var(--bd);height:60px;display:flex;align-items:center;}
+.nt{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;padding:6px 4px;color:var(--t3);font-size:10px;font-weight:500;user-select:none;transition:color .15s;}
+.ni{font-size:18px;line-height:1;}.nt.active{color:var(--ac);}
+.vw{display:none;}.vw.active{display:block;}
+.slbl{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--t2);letter-spacing:1px;text-transform:uppercase;margin:18px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--bd);}
+.bg{display:grid;gap:8px;}.bg.c2{grid-template-columns:1fr 1fr;}.bg.c3{grid-template-columns:1fr 1fr 1fr;}.bg.c5{grid-template-columns:repeat(5,1fr);}
+.bo{padding:12px 8px;border:1px solid var(--bd);border-radius:var(--rs);background:var(--cd);color:var(--t2);font-size:12px;font-weight:500;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;line-height:1.2;transition:border-color .15s,background .15s,color .15s;user-select:none;}
+.bo .ei{font-size:16px;}.bo.on{background:var(--ad);border-color:var(--ac);color:var(--ac);font-weight:600;}.bo.bn.on{background:rgba(59,130,246,.12);border-color:var(--a2);color:var(--a2);}
+.iw{position:relative;}.ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;color:var(--t2);}
+select,input,textarea{width:100%;background:var(--cd);border:1px solid var(--bd);color:var(--tx);border-radius:var(--rs);padding:11px 12px 11px 38px;font-size:15px;font-family:'Inter',sans-serif;-webkit-appearance:none;appearance:none;transition:border-color .15s;}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%238B949E' d='M4.5 6l3.5 4 3.5-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px;}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px var(--ad);}
+textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{padding-left:12px!important;}
+.bsave{width:100%;margin-top:20px;padding:14px;border:none;border-radius:var(--rs);background:var(--ac);color:#000;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 16px rgba(0,212,170,.3);}.bsave:active{opacity:.8;}
+.gate{display:flex;flex-direction:column;align-items:center;padding:40px 16px;gap:14px;text-align:center;}
+.gate .gi{font-size:44px;opacity:.35;}.gate p{color:var(--t2);font-size:13px;max-width:260px;line-height:1.5;}
+.af{width:100%;max-width:290px;}.af label{display:block;font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;text-align:left;}
+.btn{width:100%;padding:12px;border-radius:var(--rs);font-size:14px;font-weight:600;border:none;cursor:pointer;}
+.bp{background:var(--ac);color:#000;max-width:290px;}.bsec{background:var(--cd);color:var(--tx);border:1px solid var(--bd);margin-top:8px;}.bdn{background:transparent;color:var(--dn);border:1px solid var(--dn);}
+.htb{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.htt{font-size:14px;font-weight:600;flex:1;min-width:0;}
+.hcn{display:inline-block;background:var(--ad);color:var(--ac);font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:6px;font-family:'JetBrains Mono',monospace;}
+.fr{display:flex;gap:8px;margin-bottom:12px;}
+.fd{flex:1;min-width:100px;font-size:13px;padding:8px 10px;border-radius:var(--rs);background:var(--cd);border:1px solid var(--bd);color:var(--tx);-webkit-appearance:none;}
+.fd:focus{outline:none;border-color:var(--ac);}
+.ab{padding:7px 12px;border-radius:var(--rs);background:var(--cd);border:1px solid var(--bd);color:var(--t2);font-size:12px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:5px;}.ab.rd{color:var(--dn);border-color:var(--dn);}.ab:active{opacity:.7;}
+.rc{background:var(--cd);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:10px;overflow:hidden;}
+.rh{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--bd);gap:8px;}
+.rm{flex:1;min-width:0;}
+.tb{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--ad);color:var(--ac);font-family:'JetBrains Mono',monospace;}
+.tb.rp{background:rgba(248,81,73,.12);color:var(--dn);}.tb.mn{background:rgba(63,185,80,.12);color:var(--ok);}.tb.vj{background:rgba(210,153,34,.12);color:var(--wn);}.tb.lb{background:rgba(139,148,158,.12);color:var(--t2);}
+.rf{font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace;margin-top:3px;}
+.rbs{display:flex;gap:6px;flex-shrink:0;}
+.rb{width:30px;height:30px;border-radius:var(--rs);border:1px solid var(--bd);background:var(--c2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;}.rb:active{opacity:.6;}
+.ry{padding:10px 12px;}
+.rl{display:flex;gap:8px;margin-bottom:5px;align-items:baseline;}
+.rla{font-size:10px;color:var(--t3);text-transform:uppercase;font-weight:600;min-width:64px;flex-shrink:0;}
+.rlv{font-size:13px;color:var(--tx);flex:1;line-height:1.4;}
+.ch{background:var(--c2);border:1px solid var(--bd);border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--a2);display:inline-block;}
+.auc{background:var(--cd);border:1px solid var(--bd);border-radius:var(--r);padding:11px 13px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+.au{font-size:11px;color:var(--ac);font-family:'JetBrains Mono',monospace;}
+.ti{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--cd);border:1px solid var(--bd);border-radius:var(--rs);margin-bottom:7px;}
+.te{font-size:18px;width:28px;text-align:center;}.tl{flex:1;font-size:13px;font-weight:500;color:var(--tx);}
+.tbs{display:flex;gap:5px;flex-shrink:0;}
+.tb2{width:28px;height:28px;border-radius:var(--rs);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;border:1px solid var(--bd);background:var(--c2);}.tb2.dl{border-color:var(--dn);background:rgba(248,81,73,.08);color:var(--dn);}.tb2:active{opacity:.6;}
+.ar{display:flex;gap:8px;margin-top:10px;align-items:stretch;}
+.ei2{width:52px;background:var(--cd);border:1px solid var(--bd);color:var(--tx);border-radius:var(--rs);padding:10px 6px;font-size:18px;text-align:center;flex-shrink:0;}
+.li2{flex:1;background:var(--cd);border:1px solid var(--bd);color:var(--tx);border-radius:var(--rs);padding:10px 12px;font-size:14px;font-family:'Inter',sans-serif;}
+.ei2:focus,.li2:focus{outline:none;border-color:var(--ac);}
+.ab2{padding:10px 16px;background:var(--ac);color:#000;border:none;border-radius:var(--rs);font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0;}
+/* tipo edit inline */
+.ted{display:none;padding:8px;background:var(--c2);border-top:1px solid var(--bd);}.ted.op{display:flex;gap:8px;align-items:center;}
+.te2{width:44px;background:var(--cd);border:1px solid var(--bd);color:var(--tx);border-radius:var(--rs);padding:8px 4px;font-size:17px;text-align:center;}
+.tl2{flex:1;background:var(--cd);border:1px solid var(--bd);color:var(--tx);border-radius:var(--rs);padding:8px 10px;font-size:13px;font-family:'Inter',sans-serif;}
+.te2:focus,.tl2:focus{outline:none;border-color:var(--ac);}
+.tok{padding:8px 12px;background:var(--ac);color:#000;border:none;border-radius:var(--rs);font-size:13px;font-weight:700;cursor:pointer;}
+/* CSV */
+.dz{border:2px dashed var(--bd);border-radius:var(--r);padding:22px 16px;text-align:center;color:var(--t2);font-size:13px;cursor:pointer;transition:border-color .15s,background .15s;margin-bottom:10px;}
+.dz.ov{border-color:var(--ac);background:var(--ad);color:var(--ac);}
+.ir{background:var(--cd);border:1px solid var(--bd);border-radius:var(--rs);padding:10px 12px;font-size:12px;margin-bottom:10px;display:none;line-height:1.5;}
+.ir.ok{border-color:var(--ok);color:var(--ok);}.ir.wn{border-color:var(--wn);color:var(--wn);}
+/* overlay */
+.ov2{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);display:none;align-items:flex-end;}
+.ov2.op{display:flex;}.ov2.ct{align-items:center;justify-content:center;}
+.sh{width:100%;background:var(--sf);border-radius:16px 16px 0 0;border-top:1px solid var(--bd);padding:14px 18px 36px;max-height:88vh;overflow-y:auto;animation:su .22s ease;}
+@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sdl{width:32px;height:4px;border-radius:2px;background:var(--bd);margin:0 auto 14px;}
+.sht{font-size:15px;font-weight:700;margin-bottom:14px;}
+.shf{margin-bottom:12px;}.shf label{display:block;font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.dlg{width:calc(100% - 48px);max-width:340px;background:var(--sf);border-radius:var(--r);border:1px solid var(--bd);padding:18px;animation:fi .18s ease;}
+@keyframes fi{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.dt{font-size:14px;font-weight:700;margin-bottom:6px;}.dm{font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.5;white-space:pre-line;}
+.da{display:flex;gap:8px;}.da .btn{flex:1;padding:10px;font-size:13px;}
+.fsel{width:100%;padding:8px 28px 8px 10px;border-radius:var(--rs);background:var(--cd);border:1px solid var(--bd);color:var(--tx);-webkit-appearance:none;appearance:none;font-size:13px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%238B949E' d='M4.5 6l3.5 4 3.5-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;}
+.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--cd);border:1px solid var(--bd);color:var(--tx);padding:9px 16px;border-radius:20px;font-size:13px;z-index:500;opacity:0;transition:all .22s;white-space:nowrap;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}.toast.ok{border-color:var(--ac);color:var(--ac);}.toast.er{border-color:var(--dn);color:var(--dn);}
+.mt{font-size:12px;color:var(--t2);text-align:center;padding:44px 16px;}
+@media(min-width:540px){main,nav,header{max-width:480px;left:50%;right:auto;transform:translateX(-50%);}nav,header{border-left:1px solid var(--bd);border-right:1px solid var(--bd);}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hb">
+    <div class="dot"></div>
+    <div><div class="bt">REGISTRO OPS</div><div class="bs2">BETHEL · TÉCNICA DE CAMPO</div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="hbtn" id="histBtn" onclick="switchView('Historial')" title="Mi historial">
+      <span style="font-size:18px">🗂️</span>
+    </div>
+    <div class="ubadge" id="userBadge">— SIN SESIÓN</div>
+  </div>
+</header>
+
+<main>
+<!-- REGISTRO -->
+<div class="vw active" id="viewRegistro">
+  <div class="slbl">💼 Trabajo realizado</div>
+  <div class="bg c3" id="grpTipo"></div>
+  <div class="slbl">📍 Estación</div>
+  <div class="iw"><span class="ico">🗂️</span>
+    <select id="fEst"><option value="">Seleccionar estación</option>
+        <option>NINGUNA</option>
+        <option>ABANCAY</option>
+        <option>ACARI</option>
+        <option>ACOBAMBA</option>
+        <option>AGUAYTIA</option>
+        <option>AIJA</option>
+        <option>ALEGRIA</option>
+        <option>ALERTA</option>
+        <option>AMBO</option>
+        <option>AMOTAPE</option>
+        <option>ANDAGUA</option>
+        <option>ANDAHUAYLAS</option>
+        <option>ANDAJES</option>
+        <option>ANTA</option>
+        <option>ANTABAMBA</option>
+        <option>APLAO</option>
+        <option>AREQUIPA</option>
+        <option>ATALAYA</option>
+        <option>ATÍCO</option>
+        <option>AUCARA</option>
+        <option>AUCAYACU</option>
+        <option>AYABACA</option>
+        <option>AYACUCHO</option>
+        <option>AYAPATA</option>
+        <option>AYAVIRI</option>
+        <option>AYNA</option>
+        <option>AZANGARO</option>
+        <option>BAGUA</option>
+        <option>BAGUA GRANDE</option>
+        <option>BAMBAMARCA</option>
+        <option>BARRANCA</option>
+        <option>BARRANCA SAN LORENZO</option>
+        <option>BOCA COLORADO</option>
+        <option>CABALLOCOCHA</option>
+        <option>CABANA</option>
+        <option>CABANILLA</option>
+        <option>CAJABAMBA</option>
+        <option>CAJAMARCA</option>
+        <option>CALCA</option>
+        <option>CALLAYUC</option>
+        <option>CAMANÁ</option>
+        <option>CAMPANILLA</option>
+        <option>CAMPOVERDE</option>
+        <option>CANDARAVE</option>
+        <option>CANGALLO</option>
+        <option>CANTA</option>
+        <option>CAÑETE</option>
+        <option>CARAVELI</option>
+        <option>CARAZ</option>
+        <option>CARHUAMAYO</option>
+        <option>CASA GRANDE</option>
+        <option>CASAPALCA</option>
+        <option>CASHAPAMPA</option>
+        <option>CASMA</option>
+        <option>CAYNA</option>
+        <option>CCORCA</option>
+        <option>CELENDIN</option>
+        <option>CHACAS</option>
+        <option>CHACHAPOYAS</option>
+        <option>CHALA</option>
+        <option>CHALACO</option>
+        <option>CHALHUANCA</option>
+        <option>CHAVIN DE HUANTAR</option>
+        <option>CHAVIN DE PARIARCA</option>
+        <option>CHAZUTA</option>
+        <option>CHECACUPE</option>
+        <option>CHEPÉN</option>
+        <option>CHICLAYO</option>
+        <option>CHIMBOTE</option>
+        <option>CHINCHA</option>
+        <option>CHINCHERO</option>
+        <option>CHINCHEROS</option>
+        <option>CHINCHIHUASI</option>
+        <option>CHIQUIAN</option>
+        <option>CHIVAY</option>
+        <option>CHONGOYAPE</option>
+        <option>CHOSICA</option>
+        <option>CHOTA</option>
+        <option>CHULUCANAS</option>
+        <option>CHUQUIBAMBA</option>
+        <option>CHUQUIBAMBILLA</option>
+        <option>CIENEGUILLA</option>
+        <option>CODO DEL POZUZO</option>
+        <option>COLCABAMBA</option>
+        <option>COMBAPATA</option>
+        <option>CONCHUCOS</option>
+        <option>CONSTITUCION</option>
+        <option>CONTAMANA</option>
+        <option>CORACORA</option>
+        <option>CORONGO</option>
+        <option>COTAHUASI</option>
+        <option>CRUCERO</option>
+        <option>CUISPES</option>
+        <option>CURAHUASI</option>
+        <option>CUSCO</option>
+        <option>CUTERVO</option>
+        <option>DESAGUADERO</option>
+        <option>EL ESTRECHO</option>
+        <option>ESPINAR</option>
+        <option>HUACHO</option>
+        <option>HUACRACHUCO</option>
+        <option>HUAMACHUCO</option>
+        <option>HUANCABAMBA</option>
+        <option>HUANCANÉ</option>
+        <option>HUANCARAMA</option>
+        <option>HUANCARANI</option>
+        <option>HUANCAVELICA</option>
+        <option>HUANCAYO</option>
+        <option>HUANCHAY</option>
+        <option>HUANDO</option>
+        <option>HUANTA</option>
+        <option>HUÁNUCO</option>
+        <option>HUARAL</option>
+        <option>HUARAZ</option>
+        <option>HUARI</option>
+        <option>HUARIACA</option>
+        <option>HUARMEY</option>
+        <option>HUAROCHIRÍ</option>
+        <option>HUASAHUASI</option>
+        <option>HUAYLLAY</option>
+        <option>HUAYNACOTAS</option>
+        <option>HUEPETUHE</option>
+        <option>HUICUNGO</option>
+        <option>IBERIA</option>
+        <option>ICA</option>
+        <option>ICHUÑA</option>
+        <option>IGNACIO ESCUDERO</option>
+        <option>ILAVE</option>
+        <option>ILO</option>
+        <option>IÑAPARI</option>
+        <option>IQUITOS</option>
+        <option>ISLANDIA</option>
+        <option>IVOCHOTE</option>
+        <option>JAEN</option>
+        <option>JAUJA</option>
+        <option>JUANCITO</option>
+        <option>JUANJUI</option>
+        <option>JULI</option>
+        <option>JULIACA</option>
+        <option>JUNIN</option>
+        <option>KAQUIABAMBA</option>
+        <option>KEPASHIATO</option>
+        <option>KOSÑIPATA</option>
+        <option>LA ARENA</option>
+        <option>LA JOYA</option>
+        <option>LA MERCED</option>
+        <option>LA OROYA</option>
+        <option>LA PAMPA</option>
+        <option>LA RINCONADA</option>
+        <option>LA UNION</option>
+        <option>LABERINTO</option>
+        <option>LAGUNAS</option>
+        <option>LAMAY</option>
+        <option>LAMBRAMA</option>
+        <option>LAMUD</option>
+        <option>LAS LOMAS</option>
+        <option>LEYMEBAMBA</option>
+        <option>LIMA</option>
+        <option>LIRCAY</option>
+        <option>LLAMELLIN</option>
+        <option>LOCUMBA</option>
+        <option>LOMAS</option>
+        <option>LONYA GRANDE</option>
+        <option>LOS ORGANOS</option>
+        <option>LUNAHUANA</option>
+        <option>MACUSANI</option>
+        <option>MALA</option>
+        <option>MÁNCORA</option>
+        <option>MARANURA</option>
+        <option>MARCAPATA</option>
+        <option>MARCONA</option>
+        <option>MASISEA</option>
+        <option>MAZAMARI</option>
+        <option>MAZAN</option>
+        <option>MAZUKO</option>
+        <option>MOLLENDO</option>
+        <option>MOLLEPATA</option>
+        <option>MONZON</option>
+        <option>MOQUEGUA</option>
+        <option>MORROPE</option>
+        <option>MOTUPE</option>
+        <option>MOYOBAMBA</option>
+        <option>NAUTA</option>
+        <option>NAZCA</option>
+        <option>NEPEÑA</option>
+        <option>NUEVA CAJAMARCA</option>
+        <option>NUEVA REQUENA</option>
+        <option>NUÑOA</option>
+        <option>OCOBAMBA</option>
+        <option>OCONGATE</option>
+        <option>OCOÑA</option>
+        <option>OLLEROS</option>
+        <option>OLMOS</option>
+        <option>OMATE</option>
+        <option>ORCOPAMPA</option>
+        <option>OTUZCO</option>
+        <option>OXAPAMPA</option>
+        <option>OYON</option>
+        <option>PACASMAYO</option>
+        <option>PACUCHA</option>
+        <option>PAITA</option>
+        <option>PALCA</option>
+        <option>PALCAZU</option>
+        <option>PALMA REAL</option>
+        <option>PALPA</option>
+        <option>PAMPA CANGALLO</option>
+        <option>PAMPACOLCA</option>
+        <option>PAMPAROMAS</option>
+        <option>PAMPAS</option>
+        <option>PANGOA</option>
+        <option>PARCOY</option>
+        <option>PARIACOTO</option>
+        <option>PAROBAMBA</option>
+        <option>PARURO</option>
+        <option>PASCO</option>
+        <option>PATAZ</option>
+        <option>PAUCARTAMBO</option>
+        <option>PAUSA</option>
+        <option>PAZOS</option>
+        <option>PEBAS</option>
+        <option>PEDREGAL</option>
+        <option>PEDRO GALVEZ</option>
+        <option>PERENE</option>
+        <option>PICHANAKI</option>
+        <option>PICOTA</option>
+        <option>PINRA</option>
+        <option>PISCO</option>
+        <option>PISCOBAMBA</option>
+        <option>PIURA</option>
+        <option>PLANCHON</option>
+        <option>POMABAMBA</option>
+        <option>POMACANCHI</option>
+        <option>POROTO</option>
+        <option>POZUZO</option>
+        <option>PUCALLPA</option>
+        <option>PUCARA</option>
+        <option>PUENTE PIEDRA</option>
+        <option>PUERTO BERMUDEZ</option>
+        <option>PUERTO INCA</option>
+        <option>PUERTO MALDONADO</option>
+        <option>PUERTO OCOPA</option>
+        <option>PUKIRI</option>
+        <option>PUNO</option>
+        <option>PUNTA DE BOMBON</option>
+        <option>PUQUINA</option>
+        <option>PUQUIO</option>
+        <option>PUTINA</option>
+        <option>QUILLABAMBA</option>
+        <option>QUINCE MIL</option>
+        <option>QUIRUVILCA</option>
+        <option>RANRACANCHA</option>
+        <option>REQUENA</option>
+        <option>RODRIGUEZ DE MENDOZA</option>
+        <option>ROQUE</option>
+        <option>SALAMANCA</option>
+        <option>SALVACION - MANU</option>
+        <option>SAN ALEJANDRO - IRAZOLA</option>
+        <option>SAN IGNACIO</option>
+        <option>SAN JOSE DE SISA</option>
+        <option>SAN JUAN DE BIGOTE</option>
+        <option>SAN LORENZO</option>
+        <option>SAN MATEO</option>
+        <option>SAN MIGUEL DE PALLAQUES</option>
+        <option>SAN MIGUEL</option>
+        <option>SAN PABLO DE LORETO</option>
+        <option>SAN PEDRO DE CACHORA</option>
+        <option>SAN PEDRO DE CAJAS</option>
+        <option>SAN RAMON</option>
+        <option>SANCOS</option>
+        <option>SANDIA</option>
+        <option>SANTA CLOTILDE</option>
+        <option>SANTA CRUZ</option>
+        <option>SANTA EULALIA</option>
+        <option>SANTA</option>
+        <option>SANTA LUCIA</option>
+        <option>SANTA MARIA DE NANAY</option>
+        <option>SANTA ROSA DE QUIVES</option>
+        <option>SANTA ROSA</option>
+        <option>SANTIAGO DE CHUCO</option>
+        <option>SANTO TOMAS</option>
+        <option>SARAMIRIZA</option>
+        <option>SARAYACU</option>
+        <option>SATIPO</option>
+        <option>SAYAN</option>
+        <option>SECHURA</option>
+        <option>SHIRINGAYOC</option>
+        <option>SICUANI</option>
+        <option>SIHUAS</option>
+        <option>SONDORILLO</option>
+        <option>SOPLIN VARGAS</option>
+        <option>SUCCHA</option>
+        <option>SULLANA</option>
+        <option>TABALOSOS</option>
+        <option>TACNA</option>
+        <option>TALARA</option>
+        <option>TAMBO</option>
+        <option>TAMBOBAMBA</option>
+        <option>TAMSHIYACU</option>
+        <option>TARAPOTO</option>
+        <option>TARATA</option>
+        <option>TARMA</option>
+        <option>TAURIJA</option>
+        <option>TAYABAMBA</option>
+        <option>TEMBLADERA</option>
+        <option>TICAPAMPA</option>
+        <option>TINGO MARÍA</option>
+        <option>TOCACHE</option>
+        <option>TORATA</option>
+        <option>TOTORA</option>
+        <option>TRUJILLO</option>
+        <option>TUMBES</option>
+        <option>ULCUMAYO</option>
+        <option>UMARI</option>
+        <option>URCOS</option>
+        <option>URUBAMBA</option>
+        <option>USQUIL</option>
+        <option>VALLE AMAUTA</option>
+        <option>VILCABAMBA</option>
+        <option>VILLA RICA</option>
+        <option>VILLA TROMPETEROS</option>
+        <option>VIRÚ</option>
+        <option>YANATILE</option>
+        <option>YAULI</option>
+        <option>YAUYOS</option>
+        <option>YAVARI</option>
+        <option>YUNGAY</option>
+    </select>
+  </div>
+  <div class="slbl">📻 Banda</div>
+  <div class="bg c5" id="grpBanda">
+    <div class="bo bn" data-banda="FM">FM</div>
+    <div class="bo bn" data-banda="VHF">VHF</div>
+    <div class="bo bn" data-banda="UHF">UHF</div>
+    <div class="bo bn" data-banda="TDT">TDT</div>
+    <div class="bo bn" data-banda="AM">AM</div>
+  </div>
+  <div class="slbl">📝 Descripción de la actividad</div>
+  <textarea id="fDesc" class="p0" placeholder="Describir detalladamente la actividad realizada..."></textarea>
+  <div class="slbl">👤 Técnico</div>
+  <div class="bg c2" id="grpTec"></div>
+  <div style="margin-top:8px" class="iw"><span class="ico">✏️</span>
+    <input type="text" id="fZonal" placeholder="Otro técnico / Zonal (si aplica)">
+  </div>
+  <button class="bsave" onclick="guardar()">✅ GUARDAR REGISTRO</button>
+  <div style="height:8px"></div>
+</div>
+
+<!-- HISTORIAL -->
+<div class="vw" id="viewHistorial">
+  <div id="hgate" class="gate">
+    <div class="gi">🔒</div>
+    <p>Ingresa tu usuario y contraseña para ver tu historial de registros.</p>
+    <div class="af"><label>Usuario</label><select id="hUserSel" class="p0" style="padding-left:12px"></select></div>
+    <div class="af"><label>Contraseña</label><input type="password" id="hPass" class="p0" placeholder="••••••" onkeydown="if(event.key==='Enter')authHist()"></div>
+    <button class="btn bp" onclick="authHist()">Entrar</button>
+  </div>
+  <div id="hcont" style="display:none">
+    <div class="htb">
+      <div class="htt" id="htit">—<span class="hcn" id="hcnt">0</span></div>
+      <button class="ab" onclick="shareHist()">📋 Copiar</button>
+      <button class="ab rd" onclick="logoutHist()">Salir</button>
+    </div>
+    <div class="fr">
+      <input type="date" class="fd" id="fDesde" onchange="renderHist()">
+      <input type="date" class="fd" id="fHasta" onchange="renderHist()">
+    </div>
+    <div id="hlist"></div>
+  </div>
+</div>
+
+<!-- ADMIN (oculto en nav) -->
+<div class="vw" id="viewAdmin">
+  <div id="acont" style="display:none">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+      <div class="slbl" style="margin:0;border:none">🛡️ Panel de Administración</div>
+      <button class="ab rd" onclick="logoutAdmin()">Cerrar sesión</button>
+    </div>
+    <div style="height:1px;background:var(--bd);margin-bottom:16px"></div>
+
+    <div class="slbl">☁️ Sincronización Google Sheets</div>
+    <div id="syncStatus" style="font-size:12px;margin-bottom:8px"></div>
+    <div class="shf">
+      <input type="text" id="sheetUrl" class="p0" placeholder="Pega aquí la URL del Apps Script..." style="font-size:13px">
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <button class="btn bp" style="max-width:100%;flex:1;margin:0" onclick="saveSheetUrl()">Guardar URL</button>
+      <button class="btn bsec" style="flex:1;margin:0" onclick="testSheet()">Probar</button>
+    </div>
+    <div id="queueInfo" style="font-size:11px;color:var(--t2);margin-bottom:24px"></div>
+
+    <div class="slbl">👥 Técnicos</div>
+    <div id="aulist" style="margin-bottom:10px"></div>
+    <button class="btn bsec" onclick="openOv('ovNU')" style="max-width:100%;margin-bottom:24px">+ Agregar técnico</button>
+
+    <div class="slbl">💼 Tipos de trabajo</div>
+    <div id="tipoList" style="margin-bottom:8px"></div>
+    <div class="ar">
+      <input type="text" class="ei2" id="nuEmo" placeholder="📌" maxlength="2">
+      <input type="text" class="li2" id="nuLbl" placeholder="Nombre de la opción...">
+      <button class="ab2" onclick="addTipo()">＋</button>
+    </div>
+
+    <div class="slbl" style="margin-top:24px">📥 Importar CSV</div>
+    <p style="font-size:11px;color:var(--t2);margin-bottom:10px">Formato esperado: FECHA (dd/MM/yyyy HH:mm:ss), TIPO, ESTACION, BANDA, DESCRIPCION, USUARIO</p>
+    <div class="dz" id="dropzone" onclick="document.getElementById('csvFile').click()">
+      <div style="font-size:26px;margin-bottom:6px">📂</div>
+      Toca aquí o arrastra un archivo CSV
+    </div>
+    <input type="file" id="csvFile" accept=".csv" style="display:none" onchange="handleCSVFile(this)">
+    <div class="ir" id="impResult"></div>
+    <div id="impPreview" style="display:none">
+      <div style="font-size:12px;color:var(--t2);margin-bottom:8px">Vista previa (primeros 5 registros):</div>
+      <div id="impList"></div>
+      <button class="btn bp" style="max-width:100%;margin-top:8px" onclick="confirmImport()">✅ Confirmar importación</button>
+      <button class="btn bsec" onclick="cancelImport()">Cancelar</button>
+    </div>
+
+    <div class="slbl" style="margin-top:24px">📤 Exportar CSV</div>
+    <div class="fr" style="flex-wrap:wrap;gap:6px;margin-bottom:8px">
+      <input type="date" class="fd" id="expDesde" style="flex:1;min-width:110px">
+      <input type="date" class="fd" id="expHasta" style="flex:1;min-width:110px">
+      <select id="expFiltU" class="fsel" style="flex:1;min-width:110px"><option value="">Todos</option></select>
+    </div>
+    <button class="btn bp" style="max-width:100%;margin-bottom:28px" onclick="exportCSV()">⬇️ Descargar CSV</button>
+
+    <div class="slbl">📋 Todos los registros</div>
+    <div class="fr" style="flex-wrap:wrap;gap:6px">
+      <input type="date" class="fd" id="aDesde" onchange="renderAR()" style="flex:1;min-width:110px">
+      <input type="date" class="fd" id="aHasta" onchange="renderAR()" style="flex:1;min-width:110px">
+      <select id="aFiltU" class="fsel" onchange="renderAR()" style="flex:1;min-width:110px"><option value="">Todos</option></select>
+    </div>
+    <div style="display:flex;gap:8px;margin:8px 0 12px">
+      <button class="ab" onclick="refreshAR()">🔄 Actualizar</button>
+      <button class="ab" onclick="shareAdmin()">📋 Copiar para WhatsApp</button>
+    </div>
+    <div id="arlist"></div>
+    <div style="height:16px"></div>
+  </div>
+</div>
+</main>
+
+
+<div class="toast" id="toast"></div>
+
+<!-- Nuevo técnico -->
+<div class="ov2" id="ovNU" onclick="cOvIf(event,'ovNU')">
+  <div class="sh"><div class="sdl"></div><div class="sht">Nuevo Técnico</div>
+    <div class="shf"><label>Nombre Completo</label><input type="text" id="nuN" class="p0" placeholder="Ej: Juan Pérez García"></div>
+    <div class="shf"><label>Usuario (sin espacios, MAYÚSCULAS)</label><input type="text" id="nuU" class="p0" placeholder="Ej: JUANPEREZ" oninput="this.value=this.value.replace(/\s/g,'').toUpperCase()"></div>
+    <div class="shf"><label>Contraseña</label><input type="password" id="nuP" class="p0" placeholder="Mínimo 4 caracteres"></div>
+    <button class="btn bp" style="max-width:100%;margin-top:4px" onclick="crearUser()">Crear técnico</button>
+    <button class="btn bsec" onclick="cOv('ovNU')">Cancelar</button>
+  </div>
+</div>
+
+<!-- Editar técnico -->
+<div class="ov2" id="ovEU" onclick="cOvIf(event,'ovEU')">
+  <div class="sh"><div class="sdl"></div><div class="sht">Editar Técnico</div>
+    <input type="hidden" id="euIdx">
+    <div class="shf"><label>Nombre Completo</label><input type="text" id="euN" class="p0"></div>
+    <div class="shf"><label>Nueva contraseña (vacío = sin cambio)</label><input type="password" id="euP" class="p0" placeholder="••••••"></div>
+    <button class="btn bp" style="max-width:100%;margin-top:4px" onclick="saveEU()">Guardar cambios</button>
+    <button class="btn bsec" onclick="cOv('ovEU')">Cancelar</button>
+  </div>
+</div>
+
+<!-- Editar registro -->
+<div class="ov2" id="ovER" onclick="cOvIf(event,'ovER')">
+  <div class="sh"><div class="sdl"></div><div class="sht">Editar Registro</div>
+    <input type="hidden" id="erID">
+    <div class="shf"><label>Tipo de trabajo</label><div class="bg c3" id="erGT"></div></div>
+    <div class="shf"><label>Estación</label><div class="iw"><span class="ico">🗂️</span>
+      <select id="erEst"><option value="">Seleccionar</option>
+        <option>NINGUNA</option>
+        <option>ABANCAY</option>
+        <option>ACARI</option>
+        <option>ACOBAMBA</option>
+        <option>AGUAYTIA</option>
+        <option>AIJA</option>
+        <option>ALEGRIA</option>
+        <option>ALERTA</option>
+        <option>AMBO</option>
+        <option>AMOTAPE</option>
+        <option>ANDAGUA</option>
+        <option>ANDAHUAYLAS</option>
+        <option>ANDAJES</option>
+        <option>ANTA</option>
+        <option>ANTABAMBA</option>
+        <option>APLAO</option>
+        <option>AREQUIPA</option>
+        <option>ATALAYA</option>
+        <option>ATÍCO</option>
+        <option>AUCARA</option>
+        <option>AUCAYACU</option>
+        <option>AYABACA</option>
+        <option>AYACUCHO</option>
+        <option>AYAPATA</option>
+        <option>AYAVIRI</option>
+        <option>AYNA</option>
+        <option>AZANGARO</option>
+        <option>BAGUA</option>
+        <option>BAGUA GRANDE</option>
+        <option>BAMBAMARCA</option>
+        <option>BARRANCA</option>
+        <option>BARRANCA SAN LORENZO</option>
+        <option>BOCA COLORADO</option>
+        <option>CABALLOCOCHA</option>
+        <option>CABANA</option>
+        <option>CABANILLA</option>
+        <option>CAJABAMBA</option>
+        <option>CAJAMARCA</option>
+        <option>CALCA</option>
+        <option>CALLAYUC</option>
+        <option>CAMANÁ</option>
+        <option>CAMPANILLA</option>
+        <option>CAMPOVERDE</option>
+        <option>CANDARAVE</option>
+        <option>CANGALLO</option>
+        <option>CANTA</option>
+        <option>CAÑETE</option>
+        <option>CARAVELI</option>
+        <option>CARAZ</option>
+        <option>CARHUAMAYO</option>
+        <option>CASA GRANDE</option>
+        <option>CASAPALCA</option>
+        <option>CASHAPAMPA</option>
+        <option>CASMA</option>
+        <option>CAYNA</option>
+        <option>CCORCA</option>
+        <option>CELENDIN</option>
+        <option>CHACAS</option>
+        <option>CHACHAPOYAS</option>
+        <option>CHALA</option>
+        <option>CHALACO</option>
+        <option>CHALHUANCA</option>
+        <option>CHAVIN DE HUANTAR</option>
+        <option>CHAVIN DE PARIARCA</option>
+        <option>CHAZUTA</option>
+        <option>CHECACUPE</option>
+        <option>CHEPÉN</option>
+        <option>CHICLAYO</option>
+        <option>CHIMBOTE</option>
+        <option>CHINCHA</option>
+        <option>CHINCHERO</option>
+        <option>CHINCHEROS</option>
+        <option>CHINCHIHUASI</option>
+        <option>CHIQUIAN</option>
+        <option>CHIVAY</option>
+        <option>CHONGOYAPE</option>
+        <option>CHOSICA</option>
+        <option>CHOTA</option>
+        <option>CHULUCANAS</option>
+        <option>CHUQUIBAMBA</option>
+        <option>CHUQUIBAMBILLA</option>
+        <option>CIENEGUILLA</option>
+        <option>CODO DEL POZUZO</option>
+        <option>COLCABAMBA</option>
+        <option>COMBAPATA</option>
+        <option>CONCHUCOS</option>
+        <option>CONSTITUCION</option>
+        <option>CONTAMANA</option>
+        <option>CORACORA</option>
+        <option>CORONGO</option>
+        <option>COTAHUASI</option>
+        <option>CRUCERO</option>
+        <option>CUISPES</option>
+        <option>CURAHUASI</option>
+        <option>CUSCO</option>
+        <option>CUTERVO</option>
+        <option>DESAGUADERO</option>
+        <option>EL ESTRECHO</option>
+        <option>ESPINAR</option>
+        <option>HUACHO</option>
+        <option>HUACRACHUCO</option>
+        <option>HUAMACHUCO</option>
+        <option>HUANCABAMBA</option>
+        <option>HUANCANÉ</option>
+        <option>HUANCARAMA</option>
+        <option>HUANCARANI</option>
+        <option>HUANCAVELICA</option>
+        <option>HUANCAYO</option>
+        <option>HUANCHAY</option>
+        <option>HUANDO</option>
+        <option>HUANTA</option>
+        <option>HUÁNUCO</option>
+        <option>HUARAL</option>
+        <option>HUARAZ</option>
+        <option>HUARI</option>
+        <option>HUARIACA</option>
+        <option>HUARMEY</option>
+        <option>HUAROCHIRÍ</option>
+        <option>HUASAHUASI</option>
+        <option>HUAYLLAY</option>
+        <option>HUAYNACOTAS</option>
+        <option>HUEPETUHE</option>
+        <option>HUICUNGO</option>
+        <option>IBERIA</option>
+        <option>ICA</option>
+        <option>ICHUÑA</option>
+        <option>IGNACIO ESCUDERO</option>
+        <option>ILAVE</option>
+        <option>ILO</option>
+        <option>IÑAPARI</option>
+        <option>IQUITOS</option>
+        <option>ISLANDIA</option>
+        <option>IVOCHOTE</option>
+        <option>JAEN</option>
+        <option>JAUJA</option>
+        <option>JUANCITO</option>
+        <option>JUANJUI</option>
+        <option>JULI</option>
+        <option>JULIACA</option>
+        <option>JUNIN</option>
+        <option>KAQUIABAMBA</option>
+        <option>KEPASHIATO</option>
+        <option>KOSÑIPATA</option>
+        <option>LA ARENA</option>
+        <option>LA JOYA</option>
+        <option>LA MERCED</option>
+        <option>LA OROYA</option>
+        <option>LA PAMPA</option>
+        <option>LA RINCONADA</option>
+        <option>LA UNION</option>
+        <option>LABERINTO</option>
+        <option>LAGUNAS</option>
+        <option>LAMAY</option>
+        <option>LAMBRAMA</option>
+        <option>LAMUD</option>
+        <option>LAS LOMAS</option>
+        <option>LEYMEBAMBA</option>
+        <option>LIMA</option>
+        <option>LIRCAY</option>
+        <option>LLAMELLIN</option>
+        <option>LOCUMBA</option>
+        <option>LOMAS</option>
+        <option>LONYA GRANDE</option>
+        <option>LOS ORGANOS</option>
+        <option>LUNAHUANA</option>
+        <option>MACUSANI</option>
+        <option>MALA</option>
+        <option>MÁNCORA</option>
+        <option>MARANURA</option>
+        <option>MARCAPATA</option>
+        <option>MARCONA</option>
+        <option>MASISEA</option>
+        <option>MAZAMARI</option>
+        <option>MAZAN</option>
+        <option>MAZUKO</option>
+        <option>MOLLENDO</option>
+        <option>MOLLEPATA</option>
+        <option>MONZON</option>
+        <option>MOQUEGUA</option>
+        <option>MORROPE</option>
+        <option>MOTUPE</option>
+        <option>MOYOBAMBA</option>
+        <option>NAUTA</option>
+        <option>NAZCA</option>
+        <option>NEPEÑA</option>
+        <option>NUEVA CAJAMARCA</option>
+        <option>NUEVA REQUENA</option>
+        <option>NUÑOA</option>
+        <option>OCOBAMBA</option>
+        <option>OCONGATE</option>
+        <option>OCOÑA</option>
+        <option>OLLEROS</option>
+        <option>OLMOS</option>
+        <option>OMATE</option>
+        <option>ORCOPAMPA</option>
+        <option>OTUZCO</option>
+        <option>OXAPAMPA</option>
+        <option>OYON</option>
+        <option>PACASMAYO</option>
+        <option>PACUCHA</option>
+        <option>PAITA</option>
+        <option>PALCA</option>
+        <option>PALCAZU</option>
+        <option>PALMA REAL</option>
+        <option>PALPA</option>
+        <option>PAMPA CANGALLO</option>
+        <option>PAMPACOLCA</option>
+        <option>PAMPAROMAS</option>
+        <option>PAMPAS</option>
+        <option>PANGOA</option>
+        <option>PARCOY</option>
+        <option>PARIACOTO</option>
+        <option>PAROBAMBA</option>
+        <option>PARURO</option>
+        <option>PASCO</option>
+        <option>PATAZ</option>
+        <option>PAUCARTAMBO</option>
+        <option>PAUSA</option>
+        <option>PAZOS</option>
+        <option>PEBAS</option>
+        <option>PEDREGAL</option>
+        <option>PEDRO GALVEZ</option>
+        <option>PERENE</option>
+        <option>PICHANAKI</option>
+        <option>PICOTA</option>
+        <option>PINRA</option>
+        <option>PISCO</option>
+        <option>PISCOBAMBA</option>
+        <option>PIURA</option>
+        <option>PLANCHON</option>
+        <option>POMABAMBA</option>
+        <option>POMACANCHI</option>
+        <option>POROTO</option>
+        <option>POZUZO</option>
+        <option>PUCALLPA</option>
+        <option>PUCARA</option>
+        <option>PUENTE PIEDRA</option>
+        <option>PUERTO BERMUDEZ</option>
+        <option>PUERTO INCA</option>
+        <option>PUERTO MALDONADO</option>
+        <option>PUERTO OCOPA</option>
+        <option>PUKIRI</option>
+        <option>PUNO</option>
+        <option>PUNTA DE BOMBON</option>
+        <option>PUQUINA</option>
+        <option>PUQUIO</option>
+        <option>PUTINA</option>
+        <option>QUILLABAMBA</option>
+        <option>QUINCE MIL</option>
+        <option>QUIRUVILCA</option>
+        <option>RANRACANCHA</option>
+        <option>REQUENA</option>
+        <option>RODRIGUEZ DE MENDOZA</option>
+        <option>ROQUE</option>
+        <option>SALAMANCA</option>
+        <option>SALVACION - MANU</option>
+        <option>SAN ALEJANDRO - IRAZOLA</option>
+        <option>SAN IGNACIO</option>
+        <option>SAN JOSE DE SISA</option>
+        <option>SAN JUAN DE BIGOTE</option>
+        <option>SAN LORENZO</option>
+        <option>SAN MATEO</option>
+        <option>SAN MIGUEL DE PALLAQUES</option>
+        <option>SAN MIGUEL</option>
+        <option>SAN PABLO DE LORETO</option>
+        <option>SAN PEDRO DE CACHORA</option>
+        <option>SAN PEDRO DE CAJAS</option>
+        <option>SAN RAMON</option>
+        <option>SANCOS</option>
+        <option>SANDIA</option>
+        <option>SANTA CLOTILDE</option>
+        <option>SANTA CRUZ</option>
+        <option>SANTA EULALIA</option>
+        <option>SANTA</option>
+        <option>SANTA LUCIA</option>
+        <option>SANTA MARIA DE NANAY</option>
+        <option>SANTA ROSA DE QUIVES</option>
+        <option>SANTA ROSA</option>
+        <option>SANTIAGO DE CHUCO</option>
+        <option>SANTO TOMAS</option>
+        <option>SARAMIRIZA</option>
+        <option>SARAYACU</option>
+        <option>SATIPO</option>
+        <option>SAYAN</option>
+        <option>SECHURA</option>
+        <option>SHIRINGAYOC</option>
+        <option>SICUANI</option>
+        <option>SIHUAS</option>
+        <option>SONDORILLO</option>
+        <option>SOPLIN VARGAS</option>
+        <option>SUCCHA</option>
+        <option>SULLANA</option>
+        <option>TABALOSOS</option>
+        <option>TACNA</option>
+        <option>TALARA</option>
+        <option>TAMBO</option>
+        <option>TAMBOBAMBA</option>
+        <option>TAMSHIYACU</option>
+        <option>TARAPOTO</option>
+        <option>TARATA</option>
+        <option>TARMA</option>
+        <option>TAURIJA</option>
+        <option>TAYABAMBA</option>
+        <option>TEMBLADERA</option>
+        <option>TICAPAMPA</option>
+        <option>TINGO MARÍA</option>
+        <option>TOCACHE</option>
+        <option>TORATA</option>
+        <option>TOTORA</option>
+        <option>TRUJILLO</option>
+        <option>TUMBES</option>
+        <option>ULCUMAYO</option>
+        <option>UMARI</option>
+        <option>URCOS</option>
+        <option>URUBAMBA</option>
+        <option>USQUIL</option>
+        <option>VALLE AMAUTA</option>
+        <option>VILCABAMBA</option>
+        <option>VILLA RICA</option>
+        <option>VILLA TROMPETEROS</option>
+        <option>VIRÚ</option>
+        <option>YANATILE</option>
+        <option>YAULI</option>
+        <option>YAUYOS</option>
+        <option>YAVARI</option>
+        <option>YUNGAY</option>
+      </select>
+    </div></div>
+    <div class="shf"><label>Banda</label>
+      <div class="bg c5" id="erGB">
+        <div class="bo bn" data-erb="FM">FM</div>
+        <div class="bo bn" data-erb="VHF">VHF</div>
+        <div class="bo bn" data-erb="UHF">UHF</div>
+        <div class="bo bn" data-erb="TDT">TDT</div>
+        <div class="bo bn" data-erb="AM">AM</div>
+      </div>
+    </div>
+    <div class="shf"><label>Descripción</label><textarea id="erDesc" class="p0" style="min-height:80px"></textarea></div>
+    <button class="btn bp" style="max-width:100%;margin-top:4px" onclick="saveER()">Guardar cambios</button>
+    <button class="btn bsec" onclick="cOv('ovER')">Cancelar</button>
+  </div>
+</div>
+
+<!-- Confirmar eliminación -->
+<div class="ov2 ct" id="ovCF">
+  <div class="dlg">
+    <div class="dt">⚠️ Confirmar eliminación</div>
+    <div class="dm" id="cfMsg"></div>
+    <div class="da">
+      <button class="btn bsec" onclick="cOv('ovCF')">Cancelar</button>
+      <button class="btn bdn" id="cfOk">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const AP='admin@1234';
+const SEED_U=[{"nombreCompleto": "Manuel Espinoza Apaclla", "username": "MANUEL", "password": "M1234"}, {"nombreCompleto": "Lizandro Siancas Vilchez", "username": "LIZANDRO", "password": "L1234"}];
+const SEED_R=[{"id": "BH0001SEED", "fecha": "2026-05-29T16:58:56", "tipo": "Trabajos en laboratorio", "estacion": "NINGUNA", "banda": "-", "descripcion": "Reparación y programación de decodificadores zona norte", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0002SEED", "fecha": "2026-05-31T16:43:48", "tipo": "Asistencia remota", "estacion": "MAZAN", "banda": "FM", "descripcion": "Trabajo remoto , configuración del receptor satelital, se bajo la señal de Bethel.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0003SEED", "fecha": "2026-05-31T18:38:30", "tipo": "Asistencia remota", "estacion": "SANTA CRUZ", "banda": "FM", "descripcion": "Trabajo remoto.instacion del del Transmisor y conexión del Receptor satelital.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0004SEED", "fecha": "2026-05-31T18:40:27", "tipo": "Asistencia remota", "estacion": "USQUIL", "banda": "FM", "descripcion": "Instalación del Receptor satelital y configuración.\nTrabajo pendiente", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0005SEED", "fecha": "2026-06-01T17:48:26", "tipo": "Viaje tecnico", "estacion": "POROTO", "banda": "FM", "descripcion": "Trabajo de Campo : estación de Simbal desmontaje  de la torre y del sistema irradiante. Y visita técnica a la nueva ubicación de la estación.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0006SEED", "fecha": "2026-06-01T19:50:03", "tipo": "Asistencia remota", "estacion": "BAGUA", "banda": "VHF", "descripcion": "Coordinaciónes , verificación del TX de tv . trabajo pendiente...", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0007SEED", "fecha": "2026-06-01T19:51:50", "tipo": "Asistencia remota", "estacion": "CHINCHIHUASI", "banda": "FM", "descripcion": "Trabajo remoto  verificación y conexión del sistema eléctrico", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0008SEED", "fecha": "2026-06-02T08:56:43", "tipo": "Viaje tecnico", "estacion": "POROTO", "banda": "FM", "descripcion": "Desmontaje de torre de 27m, recuperación de sistema irradiante ( heliax, antena), revisión de los implementos comprados em Lima para la siguiente instalación.", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0009SEED", "fecha": "2026-06-02T22:51:30", "tipo": "Envíos y recojos", "estacion": "CUISPES", "banda": "FM", "descripcion": "Recojo del transmisor, del taller del ING  Gary  hacia la agencia GHBus", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0010SEED", "fecha": "2026-06-02T22:56:49", "tipo": "Mantenimiento preventivo", "estacion": "TRUJILLO", "banda": "FM", "descripcion": "Cableado  de la red  de internet par los  transmisores", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0011SEED", "fecha": "2026-06-03T19:28:17", "tipo": "Asistencia remota", "estacion": "NAUTA", "banda": "FM", "descripcion": "Trabajo remoto configuración del receptor satelital", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0012SEED", "fecha": "2026-06-03T19:30:40", "tipo": "Mantenimiento preventivo", "estacion": "TRUJILLO", "banda": "FM", "descripcion": "Trabajo de cableado de internet para los equipos de tv y FM . trabajo pendiente", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0013SEED", "fecha": "2026-06-04T20:01:44", "tipo": "Mantenimiento preventivo", "estacion": "TRUJILLO", "banda": "TDT", "descripcion": "Trabajo de cableado de internet al transmisor", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0014SEED", "fecha": "2026-06-05T09:51:24", "tipo": "Mantenimiento preventivo", "estacion": "TRUJILLO", "banda": "VHF", "descripcion": "Conexiónes de red para administración remota de los equipos de transmisión: TX FM ECRESSO, TX HD RODHE( REMUX,IRD PBI, CONTROL UNIT,)\nCableado hacia la oficina Horizontes del valle para gestión y monitoreo de equipos.", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0015SEED", "fecha": "2026-06-06T07:34:01", "tipo": "Trabajos en laboratorio", "estacion": "ROQUE", "banda": "FM", "descripcion": "Trabajo realizado : mantenimiento del Transmisor .y mediciónes con el Analizador y vatimetro.y verificación del audio.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0016SEED", "fecha": "2026-06-06T08:09:55", "tipo": "Asistencia remota", "estacion": "PEDRO GALVEZ", "banda": "FM", "descripcion": "Orientación de la Parabolica y configuración del receptor satelital. Trabajo pendiente", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0017SEED", "fecha": "2026-06-06T17:37:26", "tipo": "Asistencia remota", "estacion": "PEDRO GALVEZ", "banda": "FM", "descripcion": "En cordinación con el  Ps se realizó la  configuracion del decodificador Satelital . logrando bajar la señal de Bethel .", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0018SEED", "fecha": "2026-06-08T19:13:08", "tipo": "Trabajos en laboratorio", "estacion": "ROQUE", "banda": "FM", "descripcion": "Visita al taller de Ing Gary  para realizar el envío del TX    .envío pendiente.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0019SEED", "fecha": "2026-06-08T19:15:58", "tipo": "Asistencia remota", "estacion": "HUANCAVELICA", "banda": "FM", "descripcion": "Trabajo remoto configuración del decodificador Satelital", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0020SEED", "fecha": "2026-06-09T21:01:00", "tipo": "Viaje tecnico", "estacion": "CHACHAPOYAS", "banda": "FM", "descripcion": "Mantenimiento", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0021SEED", "fecha": "2026-06-10T22:39:34", "tipo": "Viaje tecnico", "estacion": "CUISPES", "banda": "FM", "descripcion": "Mantenimiento de la  antena y calibración y medición con el calibrador de antenas.\nMedición de la potencia del transmisor y ajustes al equipo con el Analizador y de Voltaje.y tomas de coordenadas.\nVerificación de la señal del receptor satelital.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0022SEED", "fecha": "2026-06-11T11:38:17", "tipo": "Asistencia remota", "estacion": "SOPLIN VARGAS", "banda": "FM", "descripcion": "Coordinación y recomendaciones de como corregir la orientación de la antena aroespira que irradia la señal FM.\n \nSe cayó el mastil y la antena se golpeó, estoy a la espera que mejore el clima y apoyarles remotamente con la orientación de la antena y reparación según los recursos locales.", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0023SEED", "fecha": "2026-06-11T11:44:07", "tipo": "Envíos y recojos", "estacion": "PICOTA", "banda": "FM", "descripcion": "Envío del tx.\n\nOrigen: taller ing Gary Trujillo 10/06/25\nDestino: taller ing lingan chimbote", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0024SEED", "fecha": "2026-06-11T11:58:49", "tipo": "Envíos y recojos", "estacion": "TABALOSOS", "banda": "FM", "descripcion": "Traslado tx \n\nOrigen :taller ing Gary Trujillo 10/06/25\nDestino: taller ing lingan chimbote", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0025SEED", "fecha": "2026-06-11T12:00:22", "tipo": "Mantenimiento preventivo", "estacion": "PIURA", "banda": "UHF", "descripcion": "Revisión y puesta en marcha del amplificador UHF digital.", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0026SEED", "fecha": "2026-06-11T12:01:17", "tipo": "Mantenimiento preventivo", "estacion": "PIURA", "banda": "FM", "descripcion": "Revisión y puesta en marcha del tx , driver y amplificador FM", "username": "LIZANDRO", "nombreCompleto": "Lizandro Siancas Vilchez"}, {"id": "BH0027SEED", "fecha": "2026-06-12T06:11:27", "tipo": "Viaje tecnico", "estacion": "LEYMEBAMBA", "banda": "FM", "descripcion": "Trabajo  realizado : Mantenimiento del sistema irradiante ( calibración y medición de las Antenas y Distribuidor).\nVerificación de la señal Satelital.\nInstalación del transmisor y medición con el Analizador y Vatimetro.\nTrabajo pendiente", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}, {"id": "BH0028SEED", "fecha": "2026-06-13T07:57:49", "tipo": "Viaje tecnico", "estacion": "RODRIGUEZ DE MENDOZA", "banda": "FM", "descripcion": "Trabajo realizado en la estación: . mantenimiento de los anclajes  cambio de los templadores y ajustes de la Torre. \nTrabajo en el sistema irradiante : mantenimiento y calibración de las antenas, medición del Distribuidor.\nSistema Satelital:  Configuración del receptor satelital y verificación de la señal.\nSistema de transmisión: reparación del transmisor y mediciónes con el Analizador y Vatimetro.", "username": "MANUEL", "nombreCompleto": "Manuel Espinoza Apaclla"}];
+const TIPOS_DEF=[
+  {e:'📱',l:'Asistencia remota'},
+  {e:'✈️',l:'Viaje técnico'},
+  {e:'📡',l:'Mantenimiento preventivo'},
+  {e:'📦',l:'Envíos y recojos'},
+  {e:'🔧',l:'Reparación'},
+  {e:'⚙️',l:'Trabajos en laboratorio'}
+];
+
+const gU=()=>JSON.parse(localStorage.getItem('bth_u')||'[]');
+const sU=v=>localStorage.setItem('bth_u',JSON.stringify(v));
+const gR=()=>JSON.parse(localStorage.getItem('bth_r')||'[]');
+const sR=v=>localStorage.setItem('bth_r',JSON.stringify(v));
+const gT=()=>{const s=localStorage.getItem('bth_t');return s?JSON.parse(s):JSON.parse(JSON.stringify(TIPOS_DEF));};
+const sT=v=>localStorage.setItem('bth_t',JSON.stringify(v));
+const gID=()=>'BH'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,4).toUpperCase();
+
+let sT2='',sB='',sTec='',erT='',erB='',sesU=null,sesA=false,pending=[];
+
+const APP_VER='v5';
+function seedInit(){
+  if(localStorage.getItem('bth_ver')!==APP_VER){
+    // Migración: preservar registros existentes si los hay
+    const prevR=localStorage.getItem('bth_r');
+    localStorage.clear();
+    sU(SEED_U);
+    // Fusionar registros previos con seed, evitando duplicados por id
+    if(prevR){
+      try{
+        const prev=JSON.parse(prevR);
+        const ids=new Set(SEED_R.map(r=>r.id));
+        const merged=[...SEED_R,...prev.filter(r=>!ids.has(r.id))];
+        sR(merged);
+      }catch(e){sR(SEED_R);}
+    }else{
+      sR(SEED_R);
+    }
+    sT(JSON.parse(JSON.stringify(TIPOS_DEF)));
+    localStorage.setItem('bth_ver',APP_VER);
+  }
+}
+
+function init(){
+  seedInit();
+  renderTB();
+  renderBanda('grpBanda','banda',v=>{sB=v;});
+  renderTecB();
+  buildHSel();
+  renderBanda('erGB','erb',v=>{erB=v;});
+  setupDrop();
+  flushQueue();
+  loadConfigFromSheet();
+}
+
+// Descarga técnicos y tipos desde Google Sheets (fuente de verdad)
+// Si no hay internet o URL, usa los que ya están guardados localmente.
+function loadConfigFromSheet(){
+  const url=localStorage.getItem('bth_sheet_url');
+  if(!url)return;
+  fetch(url+'?modo=config',{method:'GET'})
+    .then(r=>r.json())
+    .then(data=>{
+      if(data.status!=='ok')return;
+      if(Array.isArray(data.tecnicos)&&data.tecnicos.length){
+        sU(data.tecnicos);
+        renderTecB(); buildHSel();
+        if(sesA)renderAU();
+      }
+      if(Array.isArray(data.tipos)&&data.tipos.length){
+        sT(data.tipos);
+        renderTB();
+        if(sesA)renderTM();
+      }
+    })
+    .catch(()=>{}); // sin conexión: se queda con lo local
+}
+
+// Banda genérico — reutilizable para form principal y editor
+function renderBanda(groupId, dataAttr, onSelect){
+  const g=document.getElementById(groupId);
+  if(!g)return;
+  g.querySelectorAll('.bo').forEach(el=>el.addEventListener('click',()=>{
+    const val=el.dataset[dataAttr]||el.dataset[dataAttr.replace('-','')];
+    onSelect(val||el.textContent.trim());
+    g.querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
+    el.classList.add('on');
+  }));
+}
+
+// Tipo buttons (form)
+function renderTB(){
+  const tipos=gT(),g=document.getElementById('grpTipo');
+  if(!g)return;
+  g.innerHTML=tipos.map(t=>`<div class="bo" data-t="${esc(t.l)}"><span class="ei">${t.e}</span>${t.l}</div>`).join('');
+  g.querySelectorAll('.bo').forEach(el=>el.addEventListener('click',()=>{
+    sT2=el.dataset.t;
+    g.querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
+    el.classList.add('on');
+  }));
+}
+
+function renderTEB(cur){
+  const g=document.getElementById('erGT');
+  g.innerHTML=gT().map(t=>`<div class="bo${t.l===cur?' on':''}" data-et="${esc(t.l)}"><span class="ei">${t.e}</span>${t.l}</div>`).join('');
+  erT=cur;
+  g.querySelectorAll('.bo').forEach(el=>el.addEventListener('click',()=>{
+    erT=el.dataset.et; g.querySelectorAll('.bo').forEach(b=>b.classList.remove('on')); el.classList.add('on');
+  }));
+}
+
+function renderTecB(){
+  const users=gU(),g=document.getElementById('grpTec');
+  if(!users.length){g.innerHTML='<div style="color:var(--t3);font-size:12px;padding:6px 0">Sin técnicos registrados.</div>';return;}
+  g.innerHTML=users.map(u=>`<div class="bo" data-tec="${u.username}">👤 ${u.username}</div>`).join('');
+  g.querySelectorAll('.bo').forEach(el=>el.addEventListener('click',()=>{
+    sTec=el.dataset.tec; document.getElementById('fZonal').value='';
+    g.querySelectorAll('.bo').forEach(b=>b.classList.remove('on')); el.classList.add('on');
+  }));
+}
+
+function buildHSel(){
+  const sel=document.getElementById('hUserSel');
+  sel.innerHTML='<option value="">— Seleccionar —</option>';
+  gU().forEach(u=>{const o=document.createElement('option');o.value=u.username;o.textContent=u.nombreCompleto;sel.appendChild(o);});
+}
+
+function switchView(n){
+  ['Registro','Historial','Admin'].forEach(v=>document.getElementById('view'+v).classList.remove('active'));
+  const hb=document.getElementById('histBtn');if(hb)hb.classList.remove('active');
+  document.getElementById('view'+n).classList.add('active');
+  if(n==='Historial'||n==='Admin'){if(hb)hb.classList.add('active');}
+}
+
+// HISTORIAL AUTH
+function authHist(){
+  const u=document.getElementById('hUserSel').value;
+  const p=document.getElementById('hPass').value;
+  if(!u){toast('Selecciona tu usuario','er');return;}
+  if(p===AP){document.getElementById('hPass').value='';switchView('Admin');activateAdmin();return;}
+  const usr=gU().find(x=>x.username===u);
+  if(!usr||usr.password!==p){toast('Contraseña incorrecta','er');return;}
+  sesU=usr;
+  document.getElementById('hgate').style.display='none';
+  document.getElementById('hcont').style.display='block';
+  document.getElementById('htit').innerHTML=usr.nombreCompleto+'<span class="hcn" id="hcnt">0</span>';
+  document.getElementById('userBadge').textContent=usr.username;
+  renderHist();
+}
+
+function logoutHist(){
+  sesU=null;
+  document.getElementById('hgate').style.display='flex';
+  document.getElementById('hcont').style.display='none';
+  document.getElementById('hPass').value='';
+  document.getElementById('userBadge').textContent='— SIN SESIÓN';
+  switchView('Registro');
+}
+
+function renderHist(){
+  if(!sesU)return;
+  let recs=gR().filter(r=>r.username===sesU.username);
+  recs=df(recs,document.getElementById('fDesde').value,document.getElementById('fHasta').value);
+  recs.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+  document.getElementById('hcnt').textContent=recs.length;
+  document.getElementById('hlist').innerHTML=recs.length?recs.map(r=>rCard(r,false)).join(''):mt('Sin registros en este período');
+}
+
+// ADMIN
+function activateAdmin(){
+  sesA=true;
+  document.getElementById('acont').style.display='block';
+  document.getElementById('userBadge').textContent='ADMIN';
+  renderAU();renderTM();buildAF();renderAR();renderSyncUI();
+}
+
+// ── Google Sheets sync UI ──
+function renderSyncUI(){
+  const url=localStorage.getItem('bth_sheet_url')||'';
+  document.getElementById('sheetUrl').value=url;
+  const st=document.getElementById('syncStatus');
+  if(url){
+    st.innerHTML='<span style="color:var(--ok)">● Conectado</span> — los registros nuevos se envían automáticamente.';
+  }else{
+    st.innerHTML='<span style="color:var(--t3)">○ Sin conectar</span> — los registros solo se guardan en este dispositivo.';
+  }
+  const q=JSON.parse(localStorage.getItem('bth_sync_queue')||'[]');
+  document.getElementById('queueInfo').textContent=q.length?`⏳ ${q.length} registro${q.length!==1?'s':''} pendiente${q.length!==1?'s':''} de enviar (se reintentará al abrir la app con internet).`:'';
+}
+
+function saveSheetUrl(){
+  const url=document.getElementById('sheetUrl').value.trim();
+  if(url&&!/^https:\/\/script\.google\.com\//.test(url)){
+    toast('La URL debe empezar con https://script.google.com/','er');return;
+  }
+  if(url)localStorage.setItem('bth_sheet_url',url);
+  else localStorage.removeItem('bth_sheet_url');
+  renderSyncUI();
+  toast(url?'URL guardada ✓':'URL eliminada','ok');
+  if(url)flushQueue();
+}
+
+function testSheet(){
+  const url=document.getElementById('sheetUrl').value.trim();
+  if(!url){toast('Primero pega la URL','er');return;}
+  toast('Enviando registro de prueba...','');
+  const test={id:'TEST'+Date.now(),fecha:new Date().toISOString(),tipo:'PRUEBA',estacion:'TEST',banda:'-',descripcion:'Registro de prueba desde la app — puedes borrar esta fila.',username:'ADMIN',nombreCompleto:'Prueba de conexión'};
+  fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(test)})
+    .then(()=>toast('Enviado ✓ Revisa tu hoja de cálculo','ok'))
+    .catch(()=>toast('No se pudo enviar — revisa la URL','er'));
+}
+
+function logoutAdmin(){
+  sesA=false;
+  document.getElementById('acont').style.display='none';
+  document.getElementById('userBadge').textContent='— SIN SESIÓN';
+  switchView('Registro');
+}
+
+function renderAU(){
+  const users=gU(),recs=gR(),el=document.getElementById('aulist');
+  if(!users.length){el.innerHTML='<div class="mt">Sin técnicos</div>';return;}
+  el.innerHTML=users.map((u,i)=>{
+    const c=recs.filter(r=>r.username===u.username).length;
+    return`<div class="auc"><div>
+      <div style="font-size:14px;font-weight:600">${u.nombreCompleto}</div>
+      <div class="au">${u.username}</div>
+      <div style="font-size:10px;color:var(--t2)">${c} registro${c!==1?'s':''}</div>
+    </div><div style="display:flex;gap:6px">
+      <div class="rb" onclick="openEU(${i})">✏️</div>
+      <div class="rb" onclick="confDelU(${i})" style="color:var(--dn);border-color:var(--dn)">🗑️</div>
+    </div></div>`;
+  }).join('');
+}
+
+function buildAF(){
+  ['aFiltU','expFiltU'].forEach(id=>{
+    const s=document.getElementById(id),pv=s.value;
+    s.innerHTML='<option value="">Todos</option>';
+    gU().forEach(u=>{const o=document.createElement('option');o.value=u.username;o.textContent=u.nombreCompleto;s.appendChild(o);});
+    if(pv)s.value=pv;
+  });
+}
+
+let adminRecs=null; // registros descargados de la hoja (solo admin)
+
+function renderAR(){
+  const url=localStorage.getItem('bth_sheet_url');
+  // Si hay hoja conectada y aún no descargamos, traer TODO de la nube
+  if(url&&adminRecs===null){
+    document.getElementById('arlist').innerHTML='<div class="mt">⏳ Descargando registros de la nube...</div>';
+    fetch(url+'?modo=registros',{method:'GET'})
+      .then(r=>r.json())
+      .then(data=>{
+        adminRecs=(data.status==='ok'&&Array.isArray(data.registros))?data.registros:[];
+        pintarAR();
+      })
+      .catch(()=>{adminRecs=[];pintarAR();toast('Sin conexión: mostrando solo este dispositivo','er');});
+    return;
+  }
+  pintarAR();
+}
+
+function pintarAR(){
+  const desde=document.getElementById('aDesde').value,hasta=document.getElementById('aHasta').value;
+  const fu=document.getElementById('aFiltU').value;
+  // fuente: nube si existe, si no los locales
+  let recs=(adminRecs!==null)?adminRecs.slice():gR();
+  if(fu)recs=recs.filter(r=>r.username===fu);
+  recs=df(recs,desde,hasta);recs.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+  document.getElementById('arlist').innerHTML=recs.length?recs.map(r=>rCard(r,true)).join(''):mt('Sin registros');
+}
+
+// Botón para refrescar manualmente desde la nube
+function refreshAR(){
+  adminRecs=null;
+  renderAR();
+}
+
+// TIPO MANAGER
+function renderTM(){
+  const tipos=gT();
+  document.getElementById('tipoList').innerHTML=tipos.map((t,i)=>`
+    <div id="ti${i}">
+      <div class="ti"><span class="te">${t.e}</span><span class="tl">${t.l}</span>
+        <div class="tbs">
+          <div class="tb2" onclick="togET(${i})">✏️</div>
+          <div class="tb2 dl" onclick="confDelT(${i})">🗑️</div>
+        </div>
+      </div>
+      <div class="ted" id="ted${i}">
+        <input type="text" class="te2" id="tee${i}" value="${t.e}" maxlength="2">
+        <input type="text" class="tl2" id="tel${i}" value="${t.l}">
+        <button class="tok" onclick="savET(${i})">✓</button>
+      </div>
+    </div>`).join('');
+}
+
+function togET(i){document.getElementById('ted'+i).classList.toggle('op');}
+function savET(i){
+  const e=document.getElementById('tee'+i).value.trim()||'📌';
+  const l=document.getElementById('tel'+i).value.trim();
+  if(!l){toast('Escribe un nombre','er');return;}
+  const t=gT();t[i]={e,l};sT(t);renderTM();renderTB();
+  postAction({accion:'setTipos',tipos:gT()});
+  toast('Actualizado ✓','ok');
+}
+
+function addTipo(){
+  const e=document.getElementById('nuEmo').value.trim()||'📌';
+  const l=document.getElementById('nuLbl').value.trim();
+  if(!l){toast('Escribe el nombre','er');return;}
+  const t=gT();
+  if(t.find(x=>x.l.toLowerCase()===l.toLowerCase())){toast('Ya existe','er');return;}
+  t.push({e,l});sT(t);
+  document.getElementById('nuEmo').value='';document.getElementById('nuLbl').value='';
+  renderTM();renderTB();
+  postAction({accion:'addTipo',e,l});
+  toast('Opción agregada ✓','ok');
+}
+
+function confDelT(i){
+  const t=gT()[i];
+  conf2(`¿Eliminar "${t.l}"?`,()=>{
+    const t2=gT();t2.splice(i,1);sT(t2);renderTM();renderTB();
+    postAction({accion:'delTipo',l:t.l});
+    toast('Eliminado','er');
+  });
+}
+
+// USERS CRUD
+function crearUser(){
+  const n=document.getElementById('nuN').value.trim();
+  const u=document.getElementById('nuU').value.trim().toUpperCase();
+  const p=document.getElementById('nuP').value;
+  if(!n){toast('Nombre obligatorio','er');return;}
+  if(!u||/\s/.test(u)){toast('Usuario: sin espacios','er');return;}
+  if(p.length<4){toast('Contraseña mínimo 4 caracteres','er');return;}
+  const users=gU();
+  if(users.find(x=>x.username===u)){toast('Usuario ya existe','er');return;}
+  users.push({nombreCompleto:n,username:u,password:p});sU(users);
+  cOv('ovNU');renderAU();renderTecB();buildHSel();buildAF();
+  postAction({accion:'addTecnico',username:u,nombreCompleto:n,password:p});
+  toast('Técnico creado ✓','ok');
+}
+
+function openEU(i){
+  const u=gU()[i];
+  document.getElementById('euIdx').value=i;
+  document.getElementById('euN').value=u.nombreCompleto;
+  document.getElementById('euP').value='';
+  openOv('ovEU');
+}
+
+function saveEU(){
+  const i=parseInt(document.getElementById('euIdx').value);
+  const n=document.getElementById('euN').value.trim();
+  const p=document.getElementById('euP').value;
+  if(!n){toast('Nombre obligatorio','er');return;}
+  const users=gU();users[i].nombreCompleto=n;
+  if(p.length>=4)users[i].password=p;
+  sU(users);cOv('ovEU');renderAU();renderTecB();buildHSel();
+  postAction({accion:'addTecnico',username:users[i].username,nombreCompleto:n,password:p.length>=4?p:''});
+  toast('Actualizado ✓','ok');
+}
+
+function confDelU(i){
+  const u=gU()[i];
+  conf2(`¿Eliminar a "${u.nombreCompleto}"?\nSus registros se conservarán.`,()=>{
+    const users=gU();users.splice(i,1);sU(users);
+    renderAU();renderTecB();buildHSel();buildAF();
+    postAction({accion:'delTecnico',username:u.username});
+    toast('Eliminado','er');
+  });
+}
+
+// RECORDS
+function guardar(){
+  const est=document.getElementById('fEst').value;
+  const desc=document.getElementById('fDesc').value.trim();
+  const zon=document.getElementById('fZonal').value.trim();
+  let un=sTec,nc='';
+  if(zon){un=zon.toUpperCase();nc=zon;}
+  else if(un){const u=gU().find(x=>x.username===un);nc=u?u.nombreCompleto:un;}
+  if(!sT2){toast('Selecciona el tipo de trabajo','er');return;}
+  if(!est){toast('Selecciona la estación','er');return;}
+  if(!desc){toast('La descripción es obligatoria','er');return;}
+  if(!un){toast('Selecciona o escribe el técnico','er');return;}
+  const reg={id:gID(),fecha:new Date().toISOString(),tipo:sT2,estacion:est,banda:sB||'-',descripcion:desc,username:un,nombreCompleto:nc||un};
+  const recs=gR();
+  recs.push(reg);
+  sR(recs);sT2='';sB='';sTec='';
+  document.getElementById('fEst').value='';
+  document.getElementById('fDesc').value='';
+  document.getElementById('fZonal').value='';
+  document.getElementById('grpTipo').querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
+  document.getElementById('grpBanda').querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
+  document.getElementById('grpTec').querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
+  toast('Registro guardado ✓','ok');
+  syncToSheet(reg);
+}
+
+// Envío a Google Sheets (no bloquea ni falla el guardado local)
+function syncToSheet(reg){
+  const url=localStorage.getItem('bth_sheet_url');
+  if(!url)return; // sin URL configurada, solo guarda local
+  const payload=Object.assign({accion:'registro'},reg);
+  try{
+    fetch(url,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(payload)
+    }).then(()=>{
+      markSynced(reg.id);
+    }).catch(()=>{
+      queuePending(reg);
+    });
+  }catch(e){
+    queuePending(reg);
+  }
+}
+
+// Enviar una acción de configuración (técnicos/tipos) a la hoja
+function postAction(payload){
+  const url=localStorage.getItem('bth_sheet_url');
+  if(!url)return;
+  fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}).catch(()=>{});
+}
+
+// Cola de registros pendientes de sincronizar (cuando no hay internet)
+function queuePending(reg){
+  const q=JSON.parse(localStorage.getItem('bth_sync_queue')||'[]');
+  if(!q.find(r=>r.id===reg.id)){q.push(reg);localStorage.setItem('bth_sync_queue',JSON.stringify(q));}
+}
+function markSynced(id){
+  const q=JSON.parse(localStorage.getItem('bth_sync_queue')||'[]');
+  localStorage.setItem('bth_sync_queue',JSON.stringify(q.filter(r=>r.id!==id)));
+}
+// Reintentar la cola pendiente (se llama al abrir la app)
+function flushQueue(){
+  const url=localStorage.getItem('bth_sheet_url');
+  if(!url)return;
+  const q=JSON.parse(localStorage.getItem('bth_sync_queue')||'[]');
+  if(!q.length)return;
+  q.forEach(reg=>{
+    const payload=Object.assign({accion:'registro'},reg);
+    fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+      .then(()=>markSynced(reg.id)).catch(()=>{});
+  });
+}
+
+function openER(id){
+  const r=gR().find(x=>x.id===id);if(!r)return;
+  document.getElementById('erID').value=id;
+  document.getElementById('erEst').value=r.estacion;
+  document.getElementById('erDesc').value=r.descripcion;
+  erB=r.banda||'';
+  renderTEB(r.tipo);
+  document.getElementById('erGB').querySelectorAll('.bo').forEach(b=>b.classList.toggle('on',b.dataset.erb===r.banda));
+  openOv('ovER');
+}
+
+function saveER(){
+  const id=document.getElementById('erID').value;
+  const est=document.getElementById('erEst').value;
+  const desc=document.getElementById('erDesc').value.trim();
+  if(!est){toast('Selecciona estación','er');return;}
+  if(!desc){toast('Descripción obligatoria','er');return;}
+  const recs=gR(),i=recs.findIndex(r=>r.id===id);if(i===-1)return;
+  if(erT)recs[i].tipo=erT;if(erB)recs[i].banda=erB;
+  recs[i].estacion=est;recs[i].descripcion=desc;
+  sR(recs);cOv('ovER');
+  if(sesU)renderHist();if(sesA)renderAR();toast('Actualizado ✓','ok');
+}
+
+function confDelR(id){
+  conf2('¿Eliminar este registro?\nEsta acción no se puede deshacer.',()=>{
+    sR(gR().filter(r=>r.id!==id));
+    if(sesU)renderHist();if(sesA)renderAR();toast('Eliminado','er');
+  });
+}
+
+// CSV IMPORT
+function setupDrop(){
+  const dz=document.getElementById('dropzone');
+  dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('ov');});
+  dz.addEventListener('dragleave',()=>dz.classList.remove('ov'));
+  dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('ov');const f=e.dataTransfer.files[0];if(f)processCSV(f);});
+}
+
+function handleCSVFile(inp){const f=inp.files[0];if(f)processCSV(f);inp.value='';}
+
+function processCSV(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const txt=e.target.result.replace(/^﻿/,'');
+      const parsed=parseCSV(txt);
+      const recs=gR();
+      const exist=new Set(recs.map(r=>r.fecha.slice(0,16)+'|'+r.descripcion.slice(0,30)));
+      let nv=0,dp=0;pending=[];
+      parsed.forEach(r=>{
+        const k=r.fecha.slice(0,16)+'|'+r.descripcion.slice(0,30);
+        if(exist.has(k))dp++;else{pending.push(r);nv++;}
+      });
+      const res=document.getElementById('impResult');res.style.display='block';
+      if(nv===0){
+        res.className='ir wn';
+        res.textContent=`✋ ${dp} registro${dp!==1?'s':''} ya exist${dp!==1?'en':'e'}. Nada nuevo para importar.`;
+        document.getElementById('impPreview').style.display='none';return;
+      }
+      res.className='ir ok';
+      res.textContent=`✅ ${nv} registro${nv!==1?'s':''} nuevo${nv!==1?'s':''}${dp?` · ${dp} duplicado${dp!==1?'s':''} omitido${dp!==1?'s':''}`:''}. Revisa antes de confirmar:`;
+      document.getElementById('impList').innerHTML=pending.slice(0,5).map(r=>
+        `<div class="rc" style="font-size:12px"><div class="ry">
+          <div class="rl"><span class="rla">Tipo</span><span class="rlv">${esc(r.tipo)}</span></div>
+          <div class="rl"><span class="rla">Estación</span><span class="rlv">${esc(r.estacion)} · ${esc(r.banda)}</span></div>
+          <div class="rl"><span class="rla">Usuario</span><span class="rlv">${esc(r.username)}</span></div>
+          <div class="rl"><span class="rla">Fecha</span><span class="rlv" style="font-family:monospace">${r.fecha.replace('T',' ').slice(0,16)}</span></div>
+        </div></div>`).join('');
+      document.getElementById('impPreview').style.display='block';
+    }catch(err){
+      const res=document.getElementById('impResult');res.style.display='block';
+      res.className='ir wn';res.textContent='Error al leer el archivo: '+err.message;
+    }
+  };
+  reader.readAsText(file,'utf-8');
+}
+
+function parseCSV(txt){
+  const lines=txt.split(/\r?\n/).filter(l=>l.trim());
+  if(!lines.length)throw new Error('Archivo vacio');
+  const hdr=lines[0].split(',').map(h=>h.trim().toUpperCase().replace(/['"]/g,''));
+  const fi=h=>hdr.indexOf(h);
+  const iF=fi('FECHA'),iT=fi('TIPO'),iE=fi('ESTACION'),iB=fi('BANDA'),iD=fi('DESCRIPCION'),iU=fi('USUARIO');
+  if(iF===-1||iU===-1)throw new Error('Faltan columnas FECHA y/o USUARIO');
+  const res=[];
+  for(let i=1;i<lines.length;i++){
+    const cols=splitLine(lines[i]);
+    const u=(cols[iU]||'').trim().toUpperCase();if(!u)continue;
+    const fs=(cols[iF]||'').trim();
+    let iso=new Date().toISOString();
+    const m=fs.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2}):(\d{2})/);
+    if(m)iso=`${m[3]}-${m[2]}-${m[1]}T${m[4]}:${m[5]}:${m[6]}`;
+    const found=gU().find(x=>x.username===u);
+    res.push({id:gID(),fecha:iso,tipo:(cols[iT]||'').trim()||'Sin tipo',estacion:(cols[iE]||'').trim()||'NINGUNA',banda:(cols[iB]||'').trim()||'-',descripcion:(cols[iD]||'').trim(),username:u,nombreCompleto:found?found.nombreCompleto:u});
+  }
+  return res;
+}
+
+function splitLine(line){
+  const r=[];let cur='',inQ=false;
+  for(let i=0;i<line.length;i++){
+    if(line[i]==='"'){inQ=!inQ;}
+    else if(line[i]===','&&!inQ){r.push(cur.trim());cur='';}
+    else cur+=line[i];
+  }
+  r.push(cur.trim());return r;
+}
+
+function confirmImport(){
+  if(!pending.length)return;
+  const recs=gR();pending.forEach(r=>recs.push(r));sR(recs);
+  toast(`${pending.length} registros importados ✓`,'ok');
+  pending=[];document.getElementById('impPreview').style.display='none';
+  document.getElementById('impResult').style.display='none';renderAR();
+}
+
+function cancelImport(){
+  pending=[];document.getElementById('impPreview').style.display='none';
+  document.getElementById('impResult').style.display='none';
+}
+
+// CSV EXPORT
+function exportCSV(){
+  const desde=document.getElementById('expDesde').value,hasta=document.getElementById('expHasta').value;
+  const fu=document.getElementById('expFiltU').value;
+  let recs=gR();
+  if(fu)recs=recs.filter(r=>r.username===fu);
+  recs=df(recs,desde,hasta);recs.sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
+  if(!recs.length){toast('Sin registros para exportar','er');return;}
+  let csv='\uFEFFID,FECHA,TIPO,ESTACION,BANDA,DESCRIPCION,USUARIO,NOMBRE\r\n';
+  recs.forEach(r=>{
+    const d=new Date(r.fecha);
+    const fs=d.toLocaleDateString('es-PE',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+d.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    csv+=[r.id,fs,r.tipo,r.estacion,r.banda||'-',r.descripcion,r.username,r.nombreCompleto].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(',')+'\r\n';
+  });
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const fh=new Date().toLocaleDateString('es-PE',{day:'2-digit',month:'2-digit',year:'numeric'}).replace(/\//g,'-');
+  a.href=url;a.download=`bethel_registros_${fh}.csv`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+  toast(`${recs.length} registros exportados ✓`,'ok');
+}
+
+// SHARE
+function buildTxt(recs,tit){
+  let t=`📡 *Registros · ${tit}*
+_${fd(new Date())}_
+
+`;
+  recs.forEach((r,i)=>{
+    t+=`📅 ${fd(new Date(r.fecha))}
+📍 ${r.estacion}`;
+    if(r.banda&&r.banda!=='-')t+=` · ${r.banda}`;
+    t+=`
+*${r.tipo}*
+📝 ${r.descripcion}
+`;
+    if(i<recs.length-1)t+='\u2500\u2500\u2500\n';
+  });
+  return t;
+}
+
+function shareHist(){
+  if(!sesU)return;
+  let recs=gR().filter(r=>r.username===sesU.username);
+  recs=df(recs,document.getElementById('fDesde').value,document.getElementById('fHasta').value);
+  recs.sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
+  cpTxt(buildTxt(recs,sesU.nombreCompleto));
+}
+
+function shareAdmin(){
+  const fu=document.getElementById('aFiltU').value;
+  let recs=(adminRecs!==null)?adminRecs.slice():gR();
+  if(fu)recs=recs.filter(r=>r.username===fu);
+  recs=df(recs,document.getElementById('aDesde').value,document.getElementById('aHasta').value);
+  recs.sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
+  const tit=fu?(gU().find(u=>u.username===fu)||{nombreCompleto:fu}).nombreCompleto:'Bethel Técnica';
+  cpTxt(buildTxt(recs,tit));
+}
+
+function cpTxt(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>toast('Copiado 📋','ok')).catch(()=>fb(t));}
+  else fb(t);
+}
+function fb(t){
+  const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';
+  document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copiado 📋','ok');
+}
+
+// HELPERS
+function df(recs,desde,hasta){
+  return recs.filter(r=>{
+    const d=new Date(r.fecha);
+    if(desde&&d<new Date(desde+'T00:00:00'))return false;
+    if(hasta&&d>new Date(hasta+'T23:59:59'))return false;
+    return true;
+  });
+}
+function fd(d){return d.toLocaleDateString('es-PE',{day:'2-digit',month:'2-digit',year:'numeric'});}
+function fdt(d){return fd(d)+' '+d.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'});}
+function tcls(t){
+  const s=(t||'').toLowerCase();
+  if(s.includes('repar'))return'rp';if(s.includes('manten'))return'mn';
+  if(s.includes('viaje'))return'vj';if(s.includes('labor')||s.includes('taller'))return'lb';
+  return'';
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function rCard(r,su){
+  return`<div class="rc">
+    <div class="rh"><div class="rm">
+      <span class="tb ${tcls(r.tipo)}">${esc(r.tipo||'—')}</span>
+      <div class="rf">${fdt(new Date(r.fecha))}</div>
+    </div><div class="rbs">
+      <div class="rb" onclick="openER('${r.id}')">✏️</div>
+      <div class="rb" onclick="confDelR('${r.id}')" style="color:var(--dn);border-color:var(--dn)">🗑️</div>
+    </div></div>
+    <div class="ry">
+      ${su?`<div class="rl"><span class="rla">Técnico</span><span class="rlv">${esc(r.nombreCompleto)}</span></div>`:''}
+      <div class="rl"><span class="rla">Estación</span><span class="rlv">${esc(r.estacion)}</span></div>
+      <div class="rl"><span class="rla">Banda</span><span class="rlv"><span class="ch">${esc(r.banda||'-')}</span></span></div>
+      <div class="rl"><span class="rla">Descripción</span><span class="rlv">${esc(r.descripcion)}</span></div>
+    </div>
+  </div>`;
+}
+function mt(m){return`<div class="mt">📭 ${m}</div>`;}
+
+function openOv(id){document.getElementById(id).classList.add('op');}
+function cOv(id){document.getElementById(id).classList.remove('op');}
+function cOvIf(e,id){if(e.target===document.getElementById(id))cOv(id);}
+
+function conf2(msg,cb){
+  document.getElementById('cfMsg').textContent=msg;
+  document.getElementById('cfOk').onclick=()=>{cb();cOv('ovCF');};
+  openOv('ovCF');
+}
+
+let _tt=null;
+function toast(msg,type=''){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.className='toast'+(type?' '+type:'')+' show';
+  clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),2400);
+}
+
+init();
+</script>
+</body>
+</html>
