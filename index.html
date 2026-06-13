@@ -482,12 +482,13 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
   <div id="hcont" style="display:none">
     <div class="htb">
       <div class="htt" id="htit">—<span class="hcn" id="hcnt">0</span></div>
+      <button class="ab" onclick="refreshHist()">🔄</button>
       <button class="ab" onclick="shareHist()">📋 Copiar</button>
       <button class="ab rd" onclick="logoutHist()">Salir</button>
     </div>
     <div class="fr">
-      <input type="date" class="fd" id="fDesde" onchange="renderHist()">
-      <input type="date" class="fd" id="fHasta" onchange="renderHist()">
+      <input type="date" class="fd" id="fDesde" onchange="pintarHist()">
+      <input type="date" class="fd" id="fHasta" onchange="pintarHist()">
     </div>
     <div id="hlist"></div>
   </div>
@@ -550,9 +551,9 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
 
     <div class="slbl">📋 Todos los registros</div>
     <div class="fr" style="flex-wrap:wrap;gap:6px">
-      <input type="date" class="fd" id="aDesde" onchange="renderAR()" style="flex:1;min-width:110px">
-      <input type="date" class="fd" id="aHasta" onchange="renderAR()" style="flex:1;min-width:110px">
-      <select id="aFiltU" class="fsel" onchange="renderAR()" style="flex:1;min-width:110px"><option value="">Todos</option></select>
+      <input type="date" class="fd" id="aDesde" onchange="pintarAR()" style="flex:1;min-width:110px">
+      <input type="date" class="fd" id="aHasta" onchange="pintarAR()" style="flex:1;min-width:110px">
+      <select id="aFiltU" class="fsel" onchange="pintarAR()" style="flex:1;min-width:110px"><option value="">Todos</option></select>
     </div>
     <div style="display:flex;gap:8px;margin:8px 0 12px">
       <button class="ab" onclick="refreshAR()">🔄 Actualizar</button>
@@ -980,6 +981,8 @@ const sT=v=>localStorage.setItem('bth_t',JSON.stringify(v));
 const gID=()=>'BH'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,4).toUpperCase();
 
 let sT2='',sB='',sTec='',erT='',erB='',sesU=null,sesA=false,pending=[];
+let histRecs=null;  // registros del técnico descargados de la hoja
+let adminRecs=null; // todos los registros descargados de la hoja (admin)
 
 const APP_VER='v5';
 function seedInit(){
@@ -1104,6 +1107,7 @@ function authHist(){
   const usr=gU().find(x=>x.username===u);
   if(!usr||usr.password!==p){toast('Contraseña incorrecta','er');return;}
   sesU=usr;
+  histRecs=null;
   document.getElementById('hgate').style.display='none';
   document.getElementById('hcont').style.display='block';
   document.getElementById('htit').innerHTML=usr.nombreCompleto+'<span class="hcn" id="hcnt">0</span>';
@@ -1113,6 +1117,7 @@ function authHist(){
 
 function logoutHist(){
   sesU=null;
+  histRecs=null;
   document.getElementById('hgate').style.display='flex';
   document.getElementById('hcont').style.display='none';
   document.getElementById('hPass').value='';
@@ -1122,16 +1127,44 @@ function logoutHist(){
 
 function renderHist(){
   if(!sesU)return;
-  let recs=gR().filter(r=>r.username===sesU.username);
+  const url=getSheetUrl();
+  if(url&&histRecs===null){
+    document.getElementById('hlist').innerHTML='<div class="mt">⏳ Cargando tus registros...</div>';
+    fetch(url+'?modo=registros&u='+encodeURIComponent(sesU.username),{method:'GET'})
+      .then(r=>r.json())
+      .then(data=>{
+        histRecs=(data.status==='ok'&&Array.isArray(data.registros))?data.registros:[];
+        pintarHist();
+      })
+      .catch(()=>{
+        // sin conexión: usar copia local del propio técnico como respaldo
+        histRecs=gR().filter(r=>r.username===sesU.username);
+        pintarHist();
+        toast('Sin conexión: mostrando datos locales','er');
+      });
+    return;
+  }
+  pintarHist();
+}
+
+function pintarHist(){
+  if(!sesU)return;
+  let recs=(histRecs!==null)?histRecs.slice():gR().filter(r=>r.username===sesU.username);
   recs=df(recs,document.getElementById('fDesde').value,document.getElementById('fHasta').value);
   recs.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
   document.getElementById('hcnt').textContent=recs.length;
-  document.getElementById('hlist').innerHTML=recs.length?recs.map(r=>rCard(r,false)).join(''):mt('Sin registros en este período');
+  document.getElementById('hlist').innerHTML=recs.length?recs.map(r=>rCard(r,false,false)).join(''):mt('Sin registros en este período');
+}
+
+function refreshHist(){
+  histRecs=null;
+  renderHist();
 }
 
 // ADMIN
 function activateAdmin(){
   sesA=true;
+  adminRecs=null;
   document.getElementById('acont').style.display='block';
   document.getElementById('userBadge').textContent='ADMIN';
   renderAU();renderTM();buildAF();renderAR();renderSyncUI();
@@ -1209,8 +1242,6 @@ function buildAF(){
   });
 }
 
-let adminRecs=null; // registros descargados de la hoja (solo admin)
-
 function renderAR(){
   const url=getSheetUrl();
   // Si hay hoja conectada y aún no descargamos, traer TODO de la nube
@@ -1235,7 +1266,7 @@ function pintarAR(){
   let recs=(adminRecs!==null)?adminRecs.slice():gR();
   if(fu)recs=recs.filter(r=>r.username===fu);
   recs=df(recs,desde,hasta);recs.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
-  document.getElementById('arlist').innerHTML=recs.length?recs.map(r=>rCard(r,true)).join(''):mt('Sin registros');
+  document.getElementById('arlist').innerHTML=recs.length?recs.map(r=>rCard(r,true,false)).join(''):mt('Sin registros');
 }
 
 // Botón para refrescar manualmente desde la nube
@@ -1583,7 +1614,7 @@ _${fd(new Date())}_
 
 function shareHist(){
   if(!sesU)return;
-  let recs=gR().filter(r=>r.username===sesU.username);
+  let recs=(histRecs!==null)?histRecs.slice():gR().filter(r=>r.username===sesU.username);
   recs=df(recs,document.getElementById('fDesde').value,document.getElementById('fHasta').value);
   recs.sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
   cpTxt(buildTxt(recs,sesU.nombreCompleto));
@@ -1627,15 +1658,16 @@ function tcls(t){
 }
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-function rCard(r,su){
+function rCard(r,su,editable){
+  const botones=editable?`<div class="rbs">
+      <div class="rb" onclick="openER('${r.id}')">✏️</div>
+      <div class="rb" onclick="confDelR('${r.id}')" style="color:var(--dn);border-color:var(--dn)">🗑️</div>
+    </div>`:'';
   return`<div class="rc">
     <div class="rh"><div class="rm">
       <span class="tb ${tcls(r.tipo)}">${esc(r.tipo||'—')}</span>
       <div class="rf">${fdt(new Date(r.fecha))}</div>
-    </div><div class="rbs">
-      <div class="rb" onclick="openER('${r.id}')">✏️</div>
-      <div class="rb" onclick="confDelR('${r.id}')" style="color:var(--dn);border-color:var(--dn)">🗑️</div>
-    </div></div>
+    </div>${botones}</div>
     <div class="ry">
       ${su?`<div class="rl"><span class="rla">Técnico</span><span class="rlv">${esc(r.nombreCompleto)}</span></div>`:''}
       <div class="rl"><span class="rla">Estación</span><span class="rlv">${esc(r.estacion)}</span></div>
