@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>Registro Operaciones · Bethel</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#161B22">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1693,6 +1698,13 @@ function toast(msg,type=''){
   const el=document.getElementById('toast');
   el.textContent=msg;el.className='toast'+(type?' '+type:'')+' show';
   clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),2400);
+}
+
+// ── Registro del Service Worker (PWA) ──
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
 }
 
 init();
