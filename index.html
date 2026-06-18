@@ -471,6 +471,12 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
   <div style="margin-top:8px" class="iw"><span class="ico">✏️</span>
     <input type="text" id="fZonal" placeholder="Otro técnico / Zonal (si aplica)">
   </div>
+  <div class="slbl">📅 Fecha del trabajo</div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <input type="date" class="fd" id="fFecha" style="flex:1" onchange="markFechaCustom()">
+    <button class="ab" id="btnHoy" onclick="setFechaHoy()" style="white-space:nowrap">Hoy</button>
+  </div>
+  <div style="font-size:11px;color:var(--t2);margin-top:5px" id="fechaHint">Por defecto se usa la fecha de hoy. Cámbiala si registras un trabajo de días pasados.</div>
   <button class="bsave" onclick="guardar()">✅ GUARDAR REGISTRO</button>
   <div style="height:8px"></div>
 </div>
@@ -1022,6 +1028,9 @@ function init(){
   setupDrop();
   flushQueue();
   loadConfigFromSheet();
+  // Limita el selector de fecha del formulario a máximo hoy (sin futuro)
+  const ff=document.getElementById('fFecha');
+  if(ff)ff.max=new Date().toISOString().slice(0,10);
 }
 
 // Descarga técnicos y tipos desde Google Sheets (fuente de verdad)
@@ -1389,18 +1398,52 @@ function guardar(){
   if(!est){toast('Selecciona la estación','er');return;}
   if(!desc){toast('La descripción es obligatoria','er');return;}
   if(!un){toast('Selecciona o escribe el técnico','er');return;}
-  const reg={id:gID(),fecha:new Date().toISOString(),tipo:sT2,estacion:est,banda:sB||'-',descripcion:desc,username:un,nombreCompleto:nc||un};
+  // Fecha: si el técnico eligió una fecha pasada, la usamos con la hora actual.
+  // Si la dejó vacía, usamos el momento exacto de ahora.
+  const fechaInput=document.getElementById('fFecha').value;
+  let fechaISO;
+  if(fechaInput){
+    const ahora=new Date();
+    const [y,m,d]=fechaInput.split('-').map(Number);
+    // combina la fecha elegida con la hora actual
+    const fch=new Date(y,m-1,d,ahora.getHours(),ahora.getMinutes(),ahora.getSeconds());
+    fechaISO=fch.toISOString();
+  }else{
+    fechaISO=new Date().toISOString();
+  }
+  const reg={id:gID(),fecha:fechaISO,tipo:sT2,estacion:est,banda:sB||'-',descripcion:desc,username:un,nombreCompleto:nc||un};
   const recs=gR();
   recs.push(reg);
   sR(recs);sT2='';sB='';sTec='';
   document.getElementById('fEst').value='';
   document.getElementById('fDesc').value='';
   document.getElementById('fZonal').value='';
+  document.getElementById('fFecha').value='';
+  document.getElementById('fechaHint').textContent='Por defecto se usa la fecha de hoy. Cámbiala si registras un trabajo de días pasados.';
   document.getElementById('grpTipo').querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
   document.getElementById('grpBanda').querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
   document.getElementById('grpTec').querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
   toast('Registro guardado ✓','ok');
   syncToSheet(reg);
+}
+
+// Marca visualmente cuando el técnico elige una fecha distinta a hoy
+function markFechaCustom(){
+  const v=document.getElementById('fFecha').value;
+  const hint=document.getElementById('fechaHint');
+  if(!v){hint.textContent='Por defecto se usa la fecha de hoy. Cámbiala si registras un trabajo de días pasados.';hint.style.color='var(--t2)';return;}
+  const hoy=new Date().toISOString().slice(0,10);
+  if(v===hoy){hint.textContent='✓ Fecha de hoy.';hint.style.color='var(--ok)';}
+  else{
+    const [y,m,d]=v.split('-');
+    hint.textContent=`⚠️ Registrando trabajo del ${d}/${m}/${y} (fecha pasada).`;
+    hint.style.color='var(--wn)';
+  }
+}
+
+function setFechaHoy(){
+  document.getElementById('fFecha').value=new Date().toISOString().slice(0,10);
+  markFechaCustom();
 }
 
 // Envío a Google Sheets (no bloquea ni falla el guardado local)
