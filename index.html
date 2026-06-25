@@ -113,6 +113,9 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
     <div><div class="bt">REGISTRO OPS</div><div class="bs2">BETHEL · TÉCNICA DE CAMPO</div></div>
   </div>
   <div style="display:flex;align-items:center;gap:8px">
+    <div class="hbtn" id="camBtn" onclick="switchView('Camara')" title="Foto con sello">
+      <span style="font-size:18px">📷</span>
+    </div>
     <div class="hbtn" id="histBtn" onclick="switchView('Historial')" title="Mi historial">
       <span style="font-size:18px">🗂️</span>
     </div>
@@ -574,6 +577,380 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
     <div style="height:16px"></div>
   </div>
 </div>
+
+<!-- ══ CÁMARA CON SELLO ══ -->
+<div class="vw" id="viewCamara">
+  <div class="slbl">📷 Foto con sello de datos</div>
+  <p style="font-size:12px;color:var(--t2);margin-bottom:12px;line-height:1.5">Toma o elige una foto. La app le estampará las coordenadas GPS, fecha, hora y los datos que escribas. Luego puedes descargarla y compartirla.</p>
+
+  <div id="camStep1">
+    <button class="bsave" style="margin-top:0" onclick="document.getElementById('camInput').click()">📸 Tomar / Elegir foto</button>
+    <input type="file" id="camInput" accept="image/*" capture="environment" style="display:none" onchange="onCamFile(this)">
+  </div>
+
+  <div id="camStep2" style="display:none">
+    <div class="slbl">📍 Estación</div>
+    <div class="iw"><span class="ico">🗂️</span>
+      <select id="camEst"><option value="">Seleccionar estación</option>
+<option value="">Seleccionar estación</option>
+        <option>NINGUNA</option>
+        <option>ABANCAY</option>
+        <option>ACARI</option>
+        <option>ACOBAMBA</option>
+        <option>AGUAYTIA</option>
+        <option>AIJA</option>
+        <option>ALEGRIA</option>
+        <option>ALERTA</option>
+        <option>AMBO</option>
+        <option>AMOTAPE</option>
+        <option>ANDAGUA</option>
+        <option>ANDAHUAYLAS</option>
+        <option>ANDAJES</option>
+        <option>ANTA</option>
+        <option>ANTABAMBA</option>
+        <option>APLAO</option>
+        <option>AREQUIPA</option>
+        <option>ATALAYA</option>
+        <option>ATÍCO</option>
+        <option>AUCARA</option>
+        <option>AUCAYACU</option>
+        <option>AYABACA</option>
+        <option>AYACUCHO</option>
+        <option>AYAPATA</option>
+        <option>AYAVIRI</option>
+        <option>AYNA</option>
+        <option>AZANGARO</option>
+        <option>BAGUA</option>
+        <option>BAGUA GRANDE</option>
+        <option>BAMBAMARCA</option>
+        <option>BARRANCA</option>
+        <option>BARRANCA SAN LORENZO</option>
+        <option>BOCA COLORADO</option>
+        <option>CABALLOCOCHA</option>
+        <option>CABANA</option>
+        <option>CABANILLA</option>
+        <option>CAJABAMBA</option>
+        <option>CAJAMARCA</option>
+        <option>CALCA</option>
+        <option>CALLAYUC</option>
+        <option>CAMANÁ</option>
+        <option>CAMPANILLA</option>
+        <option>CAMPOVERDE</option>
+        <option>CANDARAVE</option>
+        <option>CANGALLO</option>
+        <option>CANTA</option>
+        <option>CAÑETE</option>
+        <option>CARAVELI</option>
+        <option>CARAZ</option>
+        <option>CARHUAMAYO</option>
+        <option>CASA GRANDE</option>
+        <option>CASAPALCA</option>
+        <option>CASHAPAMPA</option>
+        <option>CASMA</option>
+        <option>CAYNA</option>
+        <option>CCORCA</option>
+        <option>CELENDIN</option>
+        <option>CHACAS</option>
+        <option>CHACHAPOYAS</option>
+        <option>CHALA</option>
+        <option>CHALACO</option>
+        <option>CHALHUANCA</option>
+        <option>CHAVIN DE HUANTAR</option>
+        <option>CHAVIN DE PARIARCA</option>
+        <option>CHAZUTA</option>
+        <option>CHECACUPE</option>
+        <option>CHEPÉN</option>
+        <option>CHICLAYO</option>
+        <option>CHIMBOTE</option>
+        <option>CHINCHA</option>
+        <option>CHINCHERO</option>
+        <option>CHINCHEROS</option>
+        <option>CHINCHIHUASI</option>
+        <option>CHIQUIAN</option>
+        <option>CHIVAY</option>
+        <option>CHONGOYAPE</option>
+        <option>CHOSICA</option>
+        <option>CHOTA</option>
+        <option>CHULUCANAS</option>
+        <option>CHUQUIBAMBA</option>
+        <option>CHUQUIBAMBILLA</option>
+        <option>CIENEGUILLA</option>
+        <option>CODO DEL POZUZO</option>
+        <option>COLCABAMBA</option>
+        <option>COMBAPATA</option>
+        <option>CONCHUCOS</option>
+        <option>CONSTITUCION</option>
+        <option>CONTAMANA</option>
+        <option>CORACORA</option>
+        <option>CORONGO</option>
+        <option>COTAHUASI</option>
+        <option>CRUCERO</option>
+        <option>CUISPES</option>
+        <option>CURAHUASI</option>
+        <option>CUSCO</option>
+        <option>CUTERVO</option>
+        <option>DESAGUADERO</option>
+        <option>EL ESTRECHO</option>
+        <option>ESPINAR</option>
+        <option>HUACHO</option>
+        <option>HUACRACHUCO</option>
+        <option>HUAMACHUCO</option>
+        <option>HUANCABAMBA</option>
+        <option>HUANCANÉ</option>
+        <option>HUANCARAMA</option>
+        <option>HUANCARANI</option>
+        <option>HUANCAVELICA</option>
+        <option>HUANCAYO</option>
+        <option>HUANCHAY</option>
+        <option>HUANDO</option>
+        <option>HUANTA</option>
+        <option>HUÁNUCO</option>
+        <option>HUARAL</option>
+        <option>HUARAZ</option>
+        <option>HUARI</option>
+        <option>HUARIACA</option>
+        <option>HUARMEY</option>
+        <option>HUAROCHIRÍ</option>
+        <option>HUASAHUASI</option>
+        <option>HUAYLLAY</option>
+        <option>HUAYNACOTAS</option>
+        <option>HUEPETUHE</option>
+        <option>HUICUNGO</option>
+        <option>IBERIA</option>
+        <option>ICA</option>
+        <option>ICHUÑA</option>
+        <option>IGNACIO ESCUDERO</option>
+        <option>ILAVE</option>
+        <option>ILO</option>
+        <option>IÑAPARI</option>
+        <option>IQUITOS</option>
+        <option>ISLANDIA</option>
+        <option>IVOCHOTE</option>
+        <option>JAEN</option>
+        <option>JAUJA</option>
+        <option>JUANCITO</option>
+        <option>JUANJUI</option>
+        <option>JULI</option>
+        <option>JULIACA</option>
+        <option>JUNIN</option>
+        <option>KAQUIABAMBA</option>
+        <option>KEPASHIATO</option>
+        <option>KOSÑIPATA</option>
+        <option>LA ARENA</option>
+        <option>LA JOYA</option>
+        <option>LA MERCED</option>
+        <option>LA OROYA</option>
+        <option>LA PAMPA</option>
+        <option>LA RINCONADA</option>
+        <option>LA UNION</option>
+        <option>LABERINTO</option>
+        <option>LAGUNAS</option>
+        <option>LAMAY</option>
+        <option>LAMBRAMA</option>
+        <option>LAMUD</option>
+        <option>LAS LOMAS</option>
+        <option>LEYMEBAMBA</option>
+        <option>LIMA</option>
+        <option>LIRCAY</option>
+        <option>LLAMELLIN</option>
+        <option>LOCUMBA</option>
+        <option>LOMAS</option>
+        <option>LONYA GRANDE</option>
+        <option>LOS ORGANOS</option>
+        <option>LUNAHUANA</option>
+        <option>MACUSANI</option>
+        <option>MALA</option>
+        <option>MÁNCORA</option>
+        <option>MARANURA</option>
+        <option>MARCAPATA</option>
+        <option>MARCONA</option>
+        <option>MASISEA</option>
+        <option>MAZAMARI</option>
+        <option>MAZAN</option>
+        <option>MAZUKO</option>
+        <option>MOLLENDO</option>
+        <option>MOLLEPATA</option>
+        <option>MONZON</option>
+        <option>MOQUEGUA</option>
+        <option>MORROPE</option>
+        <option>MOTUPE</option>
+        <option>MOYOBAMBA</option>
+        <option>NAUTA</option>
+        <option>NAZCA</option>
+        <option>NEPEÑA</option>
+        <option>NUEVA CAJAMARCA</option>
+        <option>NUEVA REQUENA</option>
+        <option>NUÑOA</option>
+        <option>OCOBAMBA</option>
+        <option>OCONGATE</option>
+        <option>OCOÑA</option>
+        <option>OLLEROS</option>
+        <option>OLMOS</option>
+        <option>OMATE</option>
+        <option>ORCOPAMPA</option>
+        <option>OTUZCO</option>
+        <option>OXAPAMPA</option>
+        <option>OYON</option>
+        <option>PACASMAYO</option>
+        <option>PACUCHA</option>
+        <option>PAITA</option>
+        <option>PALCA</option>
+        <option>PALCAZU</option>
+        <option>PALMA REAL</option>
+        <option>PALPA</option>
+        <option>PAMPA CANGALLO</option>
+        <option>PAMPACOLCA</option>
+        <option>PAMPAROMAS</option>
+        <option>PAMPAS</option>
+        <option>PANGOA</option>
+        <option>PARCOY</option>
+        <option>PARIACOTO</option>
+        <option>PAROBAMBA</option>
+        <option>PARURO</option>
+        <option>PASCO</option>
+        <option>PATAZ</option>
+        <option>PAUCARTAMBO</option>
+        <option>PAUSA</option>
+        <option>PAZOS</option>
+        <option>PEBAS</option>
+        <option>PEDREGAL</option>
+        <option>PEDRO GALVEZ</option>
+        <option>PERENE</option>
+        <option>PICHANAKI</option>
+        <option>PICOTA</option>
+        <option>PINRA</option>
+        <option>PISCO</option>
+        <option>PISCOBAMBA</option>
+        <option>PIURA</option>
+        <option>PLANCHON</option>
+        <option>POMABAMBA</option>
+        <option>POMACANCHI</option>
+        <option>POROTO</option>
+        <option>POZUZO</option>
+        <option>PUCALLPA</option>
+        <option>PUCARA</option>
+        <option>PUENTE PIEDRA</option>
+        <option>PUERTO BERMUDEZ</option>
+        <option>PUERTO INCA</option>
+        <option>PUERTO MALDONADO</option>
+        <option>PUERTO OCOPA</option>
+        <option>PUKIRI</option>
+        <option>PUNO</option>
+        <option>PUNTA DE BOMBON</option>
+        <option>PUQUINA</option>
+        <option>PUQUIO</option>
+        <option>PUTINA</option>
+        <option>QUILLABAMBA</option>
+        <option>QUINCE MIL</option>
+        <option>QUIRUVILCA</option>
+        <option>RANRACANCHA</option>
+        <option>REQUENA</option>
+        <option>RODRIGUEZ DE MENDOZA</option>
+        <option>ROQUE</option>
+        <option>SALAMANCA</option>
+        <option>SALVACION - MANU</option>
+        <option>SAN ALEJANDRO - IRAZOLA</option>
+        <option>SAN IGNACIO</option>
+        <option>SAN JOSE DE SISA</option>
+        <option>SAN JUAN DE BIGOTE</option>
+        <option>SAN LORENZO</option>
+        <option>SAN MATEO</option>
+        <option>SAN MIGUEL DE PALLAQUES</option>
+        <option>SAN MIGUEL</option>
+        <option>SAN PABLO DE LORETO</option>
+        <option>SAN PEDRO DE CACHORA</option>
+        <option>SAN PEDRO DE CAJAS</option>
+        <option>SAN RAMON</option>
+        <option>SANCOS</option>
+        <option>SANDIA</option>
+        <option>SANTA CLOTILDE</option>
+        <option>SANTA CRUZ</option>
+        <option>SANTA EULALIA</option>
+        <option>SANTA</option>
+        <option>SANTA LUCIA</option>
+        <option>SANTA MARIA DE NANAY</option>
+        <option>SANTA ROSA DE QUIVES</option>
+        <option>SANTA ROSA</option>
+        <option>SANTIAGO DE CHUCO</option>
+        <option>SANTO TOMAS</option>
+        <option>SARAMIRIZA</option>
+        <option>SARAYACU</option>
+        <option>SATIPO</option>
+        <option>SAYAN</option>
+        <option>SECHURA</option>
+        <option>SHIRINGAYOC</option>
+        <option>SICUANI</option>
+        <option>SIHUAS</option>
+        <option>SONDORILLO</option>
+        <option>SOPLIN VARGAS</option>
+        <option>SUCCHA</option>
+        <option>SULLANA</option>
+        <option>TABALOSOS</option>
+        <option>TACNA</option>
+        <option>TALARA</option>
+        <option>TAMBO</option>
+        <option>TAMBOBAMBA</option>
+        <option>TAMSHIYACU</option>
+        <option>TARAPOTO</option>
+        <option>TARATA</option>
+        <option>TARMA</option>
+        <option>TAURIJA</option>
+        <option>TAYABAMBA</option>
+        <option>TEMBLADERA</option>
+        <option>TICAPAMPA</option>
+        <option>TINGO MARÍA</option>
+        <option>TOCACHE</option>
+        <option>TORATA</option>
+        <option>TOTORA</option>
+        <option>TRUJILLO</option>
+        <option>TUMBES</option>
+        <option>ULCUMAYO</option>
+        <option>UMARI</option>
+        <option>URCOS</option>
+        <option>URUBAMBA</option>
+        <option>USQUIL</option>
+        <option>VALLE AMAUTA</option>
+        <option>VILCABAMBA</option>
+        <option>VILLA RICA</option>
+        <option>VILLA TROMPETEROS</option>
+        <option>VIRÚ</option>
+        <option>YANATILE</option>
+        <option>YAULI</option>
+        <option>YAUYOS</option>
+        <option>YAVARI</option>
+        <option>YUNGAY</option>
+      </select>
+    </div>
+
+    <div class="slbl">📻 Banda</div>
+    <div class="bg c5" id="camGrpBanda">
+      <div class="bo bn" data-camb="FM">FM</div>
+      <div class="bo bn" data-camb="VHF">VHF</div>
+      <div class="bo bn" data-camb="UHF">UHF</div>
+      <div class="bo bn" data-camb="TDT">TDT</div>
+      <div class="bo bn" data-camb="AM">AM</div>
+    </div>
+
+    <div class="slbl">📝 Nota / Descripción</div>
+    <textarea id="camNota" class="p0" placeholder="Ej: Tx operando al 100%" style="min-height:70px"></textarea>
+
+    <div class="slbl">🛰️ Ubicación GPS</div>
+    <div id="gpsBox" style="background:var(--cd);border:1px solid var(--bd);border-radius:var(--rs);padding:11px 13px;font-size:12px;color:var(--t2);font-family:'JetBrains Mono',monospace;line-height:1.6">
+      <span id="gpsStatus">Toca "Obtener ubicación" para capturar las coordenadas.</span>
+    </div>
+    <button class="ab" onclick="getGPS()" style="margin-top:8px">🛰️ Obtener ubicación</button>
+
+    <div class="slbl">👁️ Vista previa</div>
+    <canvas id="camCanvas" style="width:100%;border:1px solid var(--bd);border-radius:var(--rs);display:block;background:var(--cd)"></canvas>
+
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="btn bsec" style="flex:1;margin:0" onclick="resetCam()">↺ Otra foto</button>
+      <button class="btn bp" style="flex:1;max-width:100%;margin:0" onclick="descargarFoto()">⬇️ Descargar</button>
+    </div>
+    <button class="ab" onclick="aplicarSello()" style="margin-top:10px;width:100%;justify-content:center">🔄 Actualizar sello en la foto</button>
+    <div style="height:16px"></div>
+  </div>
+</div>
 </main>
 
 
@@ -1031,6 +1408,10 @@ function init(){
   // Limita el selector de fecha del formulario a máximo hoy (sin futuro)
   const ff=document.getElementById('fFecha');
   if(ff)ff.max=new Date().toISOString().slice(0,10);
+  // Cámara
+  bindCamBanda();
+  const ce=document.getElementById('camEst');if(ce)ce.addEventListener('change',aplicarSello);
+  const cn=document.getElementById('camNota');if(cn)cn.addEventListener('input',aplicarSello);
 }
 
 // Descarga técnicos y tipos desde Google Sheets (fuente de verdad)
@@ -1106,10 +1487,12 @@ function buildHSel(){
 }
 
 function switchView(n){
-  ['Registro','Historial','Admin'].forEach(v=>document.getElementById('view'+v).classList.remove('active'));
+  ['Registro','Historial','Admin','Camara'].forEach(v=>{const el=document.getElementById('view'+v);if(el)el.classList.remove('active');});
   const hb=document.getElementById('histBtn');if(hb)hb.classList.remove('active');
+  const cb=document.getElementById('camBtn');if(cb)cb.classList.remove('active');
   document.getElementById('view'+n).classList.add('active');
   if(n==='Historial'||n==='Admin'){if(hb)hb.classList.add('active');}
+  if(n==='Camara'){if(cb)cb.classList.add('active');}
 }
 
 // HISTORIAL AUTH
@@ -1741,6 +2124,168 @@ function toast(msg,type=''){
   const el=document.getElementById('toast');
   el.textContent=msg;el.className='toast'+(type?' '+type:'')+' show';
   clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),2400);
+}
+
+// ══════════════════════════════════════════════════
+//  CÁMARA CON SELLO DE DATOS
+// ══════════════════════════════════════════════════
+let camImg=null;       // Image() de la foto cargada
+let camBanda='';       // banda seleccionada
+let camGPS=null;       // {lat, lon, acc, alt}
+
+// bind de botones de banda de la cámara (se llama en init)
+function bindCamBanda(){
+  const g=document.getElementById('camGrpBanda');
+  if(!g)return;
+  g.querySelectorAll('.bo').forEach(el=>el.addEventListener('click',()=>{
+    camBanda=el.dataset.camb;
+    g.querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
+    el.classList.add('on');
+    aplicarSello();
+  }));
+}
+
+// Cuando el técnico elige/toma una foto
+function onCamFile(input){
+  const file=input.files&&input.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      camImg=img;
+      document.getElementById('camStep1').style.display='none';
+      document.getElementById('camStep2').style.display='block';
+      aplicarSello();
+      // intenta capturar GPS automáticamente al cargar la foto
+      getGPS();
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+  input.value='';
+}
+
+// Obtener ubicación GPS
+function getGPS(){
+  const st=document.getElementById('gpsStatus');
+  if(!navigator.geolocation){st.textContent='Este dispositivo no soporta GPS.';return;}
+  st.textContent='⏳ Obteniendo ubicación...';
+  navigator.geolocation.getCurrentPosition(
+    pos=>{
+      camGPS={
+        lat:pos.coords.latitude,
+        lon:pos.coords.longitude,
+        acc:pos.coords.accuracy,
+        alt:pos.coords.altitude
+      };
+      st.innerHTML='✅ Lat: '+camGPS.lat.toFixed(6)+'<br>Lon: '+camGPS.lon.toFixed(6)+
+        '<br>Precisión: '+(camGPS.acc?camGPS.acc.toFixed(0)+' m':'—')+
+        (camGPS.alt!=null?'<br>Elevación: '+camGPS.alt.toFixed(0)+' m':'');
+      aplicarSello();
+    },
+    err=>{
+      st.textContent='⚠️ No se pudo obtener la ubicación. Activa el GPS y los permisos de ubicación del navegador.';
+    },
+    {enableHighAccuracy:true,timeout:15000,maximumAge:0}
+  );
+}
+
+// Dibuja la foto + el sello sobre el canvas
+function aplicarSello(){
+  if(!camImg)return;
+  const canvas=document.getElementById('camCanvas');
+  const ctx=canvas.getContext('2d');
+
+  // limitar tamaño máximo para no generar imágenes gigantes
+  const maxW=1280;
+  let w=camImg.width, h=camImg.height;
+  if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+  canvas.width=w;canvas.height=h;
+
+  // foto base
+  ctx.drawImage(camImg,0,0,w,h);
+
+  // construir las líneas del sello
+  const est=document.getElementById('camEst').value;
+  const nota=document.getElementById('camNota').value.trim();
+  const ahora=new Date();
+  const fechaStr=ahora.toLocaleDateString('es-PE',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+
+                 ahora.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+
+  const lineas=[];
+  if(camGPS){
+    lineas.push('Latitud: '+camGPS.lat.toFixed(6));
+    lineas.push('Longitud: '+camGPS.lon.toFixed(6));
+    if(camGPS.alt!=null)lineas.push('Elevación: '+camGPS.alt.toFixed(2)+' m');
+    if(camGPS.acc!=null)lineas.push('Precisión: '+camGPS.acc.toFixed(2)+' m');
+  }
+  lineas.push('Tiempo: '+fechaStr);
+  if(est)lineas.push('Estación: '+est+(camBanda?' · '+camBanda:''));
+  else if(camBanda)lineas.push('Banda: '+camBanda);
+  if(nota)lineas.push('Nota: '+nota);
+
+  // tamaño de fuente proporcional al ancho
+  const fs=Math.max(14,Math.round(w*0.028));
+  const pad=Math.round(fs*0.5);
+  const lh=Math.round(fs*1.35);
+  ctx.font='600 '+fs+'px Inter, sans-serif';
+  ctx.textBaseline='top';
+
+  // ancho del recuadro = el de la línea más larga
+  let maxLineW=0;
+  lineas.forEach(l=>{const m=ctx.measureText(l).width;if(m>maxLineW)maxLineW=m;});
+  const boxW=Math.min(w, maxLineW+pad*2);
+  const boxH=lineas.length*lh+pad*2;
+  const boxY=h-boxH;
+
+  // fondo semitransparente
+  ctx.fillStyle='rgba(255,255,255,0.78)';
+  ctx.fillRect(0,boxY,boxW,boxH);
+
+  // texto
+  ctx.fillStyle='#111111';
+  lineas.forEach((l,i)=>{
+    ctx.fillText(l,pad,boxY+pad+i*lh);
+  });
+
+  // marca de agua discreta abajo a la derecha
+  ctx.font='600 '+Math.round(fs*0.8)+'px Inter, sans-serif';
+  ctx.fillStyle='rgba(0,212,170,0.9)';
+  ctx.textAlign='right';
+  ctx.fillText('BETHEL · Técnica de Campo',w-pad,h-Math.round(fs*0.95));
+  ctx.textAlign='left';
+}
+
+// Descargar la imagen sellada
+function descargarFoto(){
+  if(!camImg){toast('Primero toma una foto','er');return;}
+  aplicarSello();
+  const canvas=document.getElementById('camCanvas');
+  const est=document.getElementById('camEst').value||'foto';
+  const ahora=new Date();
+  const stamp=ahora.toLocaleDateString('es-PE',{day:'2-digit',month:'2-digit',year:'numeric'}).replace(/\//g,'-')+
+              '_'+ahora.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'}).replace(/:/g,'');
+  const nombre='bethel_'+est.replace(/\s+/g,'-').toLowerCase()+'_'+stamp+'.jpg';
+  canvas.toBlob(blob=>{
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download=nombre;
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast('Foto descargada ✓','ok');
+  },'image/jpeg',0.92);
+}
+
+// Reiniciar para otra foto
+function resetCam(){
+  camImg=null;camGPS=null;camBanda='';
+  document.getElementById('camStep1').style.display='block';
+  document.getElementById('camStep2').style.display='none';
+  document.getElementById('camEst').value='';
+  document.getElementById('camNota').value='';
+  document.getElementById('gpsStatus').textContent='Toca "Obtener ubicación" para capturar las coordenadas.';
+  document.getElementById('camGrpBanda').querySelectorAll('.bo').forEach(b=>b.classList.remove('on'));
 }
 
 // ── Registro del Service Worker (PWA) ──
