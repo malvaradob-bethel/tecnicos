@@ -113,7 +113,10 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
     <div><div class="bt">REGISTRO OPS</div><div class="bs2">BETHEL · TÉCNICA DE CAMPO</div></div>
   </div>
   <div style="display:flex;align-items:center;gap:8px">
-    <div class="hbtn" id="camBtn" onclick="switchView('Camara')" title="Foto con sello">
+    <div class="hbtn" id="aboutBtn" onclick="toggleAbout()" title="Acerca de">
+      <span style="font-size:18px">ⓘ</span>
+    </div>
+    <div class="hbtn" id="camBtn" onclick="toggleCam()" title="Foto con sello">
       <span style="font-size:18px">📷</span>
     </div>
     <div class="hbtn" id="histBtn" onclick="switchView('Historial')" title="Mi historial">
@@ -580,7 +583,11 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
 
 <!-- ══ CÁMARA CON SELLO ══ -->
 <div class="vw" id="viewCamara">
-  <div class="slbl">📷 Foto con sello de datos</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+    <div class="slbl" style="margin:0;border:none">📷 Foto con sello de datos</div>
+    <button class="ab" onclick="switchView('Registro')">← Volver</button>
+  </div>
+  <div style="height:1px;background:var(--bd);margin-bottom:12px"></div>
   <p style="font-size:12px;color:var(--t2);margin-bottom:12px;line-height:1.5">Toma o elige una foto. La app le estampará las coordenadas GPS, fecha, hora y los datos que escribas. Luego puedes descargarla y compartirla.</p>
 
   <div id="camStep1">
@@ -950,6 +957,48 @@ textarea{padding:11px 12px;resize:none;min-height:100px;line-height:1.5;}.p0{pad
     <button class="ab" onclick="aplicarSello()" style="margin-top:10px;width:100%;justify-content:center">🔄 Actualizar sello en la foto</button>
     <div style="height:16px"></div>
   </div>
+</div>
+<!-- ══ ACERCA DE ══ -->
+<div class="vw" id="viewAbout">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+    <div class="slbl" style="margin:0;border:none">ⓘ Acerca de</div>
+    <button class="ab" onclick="switchView('Registro')">← Volver</button>
+  </div>
+  <div style="height:1px;background:var(--bd);margin-bottom:16px"></div>
+
+  <div style="text-align:center;margin-bottom:18px">
+    <img src="icons/icon-128.png" alt="Bethel" style="width:84px;height:84px;border-radius:18px;margin-bottom:10px">
+    <div style="font-size:17px;font-weight:700;color:var(--tx)">Registro de Operaciones · Bethel</div>
+    <div style="font-size:12px;color:var(--ac);font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-top:2px">TÉCNICA DE CAMPO — VERSIÓN MÓVIL</div>
+  </div>
+
+  <p style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:12px">Esta plataforma ha sido desarrollada para facilitar el registro y seguimiento de las operaciones técnicas realizadas por el equipo de campo en la red nacional de radio y televisión Bethel, proporcionando herramientas integradas para documentar actividades por estación, banda y tipo de trabajo, con sincronización centralizada en la nube y captura de evidencia fotográfica con datos de ubicación.</p>
+
+  <p style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:16px">Su objetivo es simplificar el reporte diario de los técnicos en provincias, permitiendo que cada operación quede registrada de forma ordenada, accesible y respaldada, fortaleciendo la trazabilidad y el control de las labores de mantenimiento, instalación y soporte en toda la cobertura nacional.</p>
+
+  <div style="background:var(--cd);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px;margin-bottom:16px">
+    <div style="font-size:11px;color:var(--t3);text-transform:uppercase;font-weight:600;letter-spacing:.5px;margin-bottom:3px">Autor</div>
+    <div style="font-size:14px;color:var(--tx);font-weight:600">Manuel Alvarado Baldeón</div>
+    <div style="font-size:12px;color:var(--t2)">Desarrollo y mantenimiento</div>
+  </div>
+
+  <div class="slbl">💜 Colabora con el proyecto</div>
+  <p style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px">Si esta herramienta es de utilidad para usted, puede apoyar su desarrollo, mejora continua y mantenimiento mediante una contribución voluntaria a través del siguiente código QR de Yape.</p>
+
+  <div style="text-align:center;margin-bottom:8px">
+    <img src="icons/yape-qr.png" alt="Yape - Manuel Alvarado Baldeón" style="width:230px;max-width:80%;border-radius:14px;box-shadow:0 4px 16px rgba(0,0,0,.3)">
+    <div style="font-size:13px;color:var(--tx);font-weight:600;margin-top:8px">Manuel Alvarado Baldeón</div>
+    <div style="font-size:11px;color:var(--t2)">Paga aquí con Yape</div>
+  </div>
+
+  <div class="slbl">✉️ Contacto</div>
+  <p style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:8px">Sus sugerencias, observaciones y comentarios son bienvenidos:</p>
+  <a href="mailto:malvarado@betheltv.tv" style="display:flex;align-items:center;gap:8px;background:var(--cd);border:1px solid var(--bd);border-radius:var(--rs);padding:11px 14px;color:var(--ac);text-decoration:none;font-size:14px;font-weight:600;margin-bottom:18px">
+    ✉️ malvarado@betheltv.tv
+  </a>
+
+  <p style="font-size:12px;color:var(--t3);line-height:1.6;text-align:center;font-style:italic;margin-bottom:8px">Gracias por contribuir al fortalecimiento de las herramientas tecnológicas que apoyan la expansión y operación de la Red de Bethel.</p>
+  <div style="height:20px"></div>
 </div>
 </main>
 
@@ -1487,12 +1536,26 @@ function buildHSel(){
 }
 
 function switchView(n){
-  ['Registro','Historial','Admin','Camara'].forEach(v=>{const el=document.getElementById('view'+v);if(el)el.classList.remove('active');});
+  ['Registro','Historial','Admin','Camara','About'].forEach(v=>{const el=document.getElementById('view'+v);if(el)el.classList.remove('active');});
   const hb=document.getElementById('histBtn');if(hb)hb.classList.remove('active');
   const cb=document.getElementById('camBtn');if(cb)cb.classList.remove('active');
+  const ab=document.getElementById('aboutBtn');if(ab)ab.classList.remove('active');
   document.getElementById('view'+n).classList.add('active');
   if(n==='Historial'||n==='Admin'){if(hb)hb.classList.add('active');}
   if(n==='Camara'){if(cb)cb.classList.add('active');}
+  if(n==='About'){if(ab)ab.classList.add('active');}
+}
+
+// El botón cámara funciona como interruptor: entra y sale
+function toggleCam(){
+  const enCamara=document.getElementById('viewCamara').classList.contains('active');
+  switchView(enCamara?'Registro':'Camara');
+}
+
+// El botón "Acerca de" funciona como interruptor
+function toggleAbout(){
+  const enAbout=document.getElementById('viewAbout').classList.contains('active');
+  switchView(enAbout?'Registro':'About');
 }
 
 // HISTORIAL AUTH
@@ -2221,14 +2284,12 @@ function aplicarSello(){
     if(camGPS.acc!=null)lineas.push('Precisión: '+camGPS.acc.toFixed(2)+' m');
   }
   lineas.push('Tiempo: '+fechaStr);
-  if(est)lineas.push('Estación: '+est+(camBanda?' · '+camBanda:''));
-  else if(camBanda)lineas.push('Banda: '+camBanda);
   if(nota)lineas.push('Nota: '+nota);
 
-  // tamaño de fuente proporcional al ancho
-  const fs=Math.max(14,Math.round(w*0.028));
-  const pad=Math.round(fs*0.5);
-  const lh=Math.round(fs*1.35);
+  // tamaño de fuente proporcional al ancho (más pequeño = ocupa menos)
+  const fs=Math.max(11,Math.round(w*0.020));
+  const pad=Math.round(fs*0.45);
+  const lh=Math.round(fs*1.25);
   ctx.font='600 '+fs+'px Inter, sans-serif';
   ctx.textBaseline='top';
 
@@ -2239,8 +2300,8 @@ function aplicarSello(){
   const boxH=lineas.length*lh+pad*2;
   const boxY=h-boxH;
 
-  // fondo semitransparente
-  ctx.fillStyle='rgba(255,255,255,0.78)';
+  // fondo más transparente
+  ctx.fillStyle='rgba(255,255,255,0.55)';
   ctx.fillRect(0,boxY,boxW,boxH);
 
   // texto
@@ -2249,12 +2310,15 @@ function aplicarSello(){
     ctx.fillText(l,pad,boxY+pad+i*lh);
   });
 
-  // marca de agua discreta abajo a la derecha
-  ctx.font='600 '+Math.round(fs*0.8)+'px Inter, sans-serif';
-  ctx.fillStyle='rgba(0,212,170,0.9)';
-  ctx.textAlign='right';
-  ctx.fillText('BETHEL · Técnica de Campo',w-pad,h-Math.round(fs*0.95));
-  ctx.textAlign='left';
+  // marca de agua abajo a la derecha: Estación · Banda
+  const marca=est?(est+(camBanda?' · '+camBanda:'')):(camBanda||'');
+  if(marca){
+    ctx.font='700 '+Math.round(fs*0.95)+'px Inter, sans-serif';
+    ctx.fillStyle='rgba(0,212,170,0.95)';
+    ctx.textAlign='right';
+    ctx.fillText(marca,w-pad,h-Math.round(fs*1.05));
+    ctx.textAlign='left';
+  }
 }
 
 // Descargar la imagen sellada
