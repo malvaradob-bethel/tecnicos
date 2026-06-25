@@ -7,7 +7,7 @@
  *  descarguen la versión nueva.
  * ════════════════════════════════════════════════════════════════ */
 
-const CACHE_VER = 'bethel-v7';
+const CACHE_VER = 'bethel-v8';
 const CACHE_NAME = 'registro-ops-' + CACHE_VER;
 
 // Archivos que se guardan para uso sin conexión
@@ -19,7 +19,9 @@ const ASSETS = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
-  './icons/yape-qr.png'
+  './icons/yape-qr.png',
+  './icons/logo-radio-white.png',
+  './icons/logo-canal-white.png'
 ];
 
 // ── Instalación: precachea los archivos base ──
