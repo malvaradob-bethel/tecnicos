@@ -2344,10 +2344,11 @@ function aplicarSello(){
   if(logo&&logo.complete&&logo.naturalWidth){
     const logoW=Math.round(w*0.16);                      // ancho del logo = 16% de la foto
     const logoH=Math.round(logoW*logo.naturalHeight/logo.naturalWidth);
-    const margenX=Math.round(w*0.05);                    // separación del borde derecho (más adentro)
+    const margenX=Math.round(w*0.05);                    // separación del borde derecho
+    const margenY=Math.round(h*0.015);                   // separación del borde inferior
     const lx=w-logoW-margenX;
-    // más abajo: lo bajamos para que su base quede cerca de la parte superior del recuadro
-    const ly=boxY-logoH+Math.round(logoH*0.35);
+    // anclado al borde INFERIOR de la foto (igual que el recuadro de datos)
+    const ly=h-logoH-margenY;
     // sombra sutil para que el logo blanco se vea sobre fondos claros
     ctx.save();
     ctx.shadowColor='rgba(0,0,0,0.45)';
