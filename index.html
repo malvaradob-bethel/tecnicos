@@ -1654,22 +1654,38 @@ function bindCamBanda(){
 function onCamFile(input){
   const file=input.files&&input.files[0];
   if(!file)return;
-  const reader=new FileReader();
-  reader.onload=e=>{
-    const img=new Image();
-    img.onload=()=>{
-      camImg=img;
+  toast('Procesando foto...','');
+  // Usar createObjectURL (mucho más liviano en memoria que base64)
+  const url=URL.createObjectURL(file);
+  const big=new Image();
+  big.onload=()=>{
+    // Redimensionar de inmediato a un máximo manejable, para no saturar
+    // la memoria en celulares de gama media/baja con cámaras de muchos MP.
+    const MAX=1600;
+    let w=big.naturalWidth, h=big.naturalHeight;
+    if(w>MAX||h>MAX){
+      if(w>=h){h=Math.round(h*MAX/w);w=MAX;}
+      else{w=Math.round(w*MAX/h);h=MAX;}
+    }
+    const tmp=document.createElement('canvas');
+    tmp.width=w;tmp.height=h;
+    tmp.getContext('2d').drawImage(big,0,0,w,h);
+    URL.revokeObjectURL(url);      // liberar la imagen original gigante YA
+    // guardar solo la versión reducida como imagen de trabajo
+    const small=new Image();
+    small.onload=()=>{
+      camImg=small;
       lastBlob=null;
       document.getElementById('btnShare').style.display='none';
       document.getElementById('camStep1').style.display='none';
       document.getElementById('camStep2').style.display='block';
       aplicarSello();
-      // intenta capturar GPS automáticamente al cargar la foto
       getGPS();
     };
-    img.src=e.target.result;
+    small.src=tmp.toDataURL('image/jpeg',0.92);
   };
-  reader.readAsDataURL(file);
+  big.onerror=()=>{URL.revokeObjectURL(url);toast('No se pudo abrir la foto','er');};
+  big.src=url;
   input.value='';
 }
 
