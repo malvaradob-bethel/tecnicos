@@ -7,7 +7,7 @@
  *  descarguen la versión nueva.
  * ════════════════════════════════════════════════════════════════ */
 
-const CACHE_VER = 'bethel-v13';
+const CACHE_VER = 'bethel-v14';
 const CACHE_NAME = 'registro-ops-' + CACHE_VER;
 
 // Archivos que se guardan para uso sin conexión
